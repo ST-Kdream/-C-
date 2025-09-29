@@ -21,6 +21,9 @@
     <ClCompile Include="number_check.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="gameway.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore">
@@ -29,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="number_check.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gameway.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
