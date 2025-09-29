@@ -1,0 +1,25 @@
+# 编译生成的文件
+*.exe
+*.dll
+*.lib
+
+# 调试文件
+*.pdb
+*.idb
+
+# Visual Studio临时文件
+.vs/
+*.user
+*.aps
+*.ncb
+*.suo
+
+# 编译中间文件
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+
+# 其他临时文件
+*.tmp
+*.log

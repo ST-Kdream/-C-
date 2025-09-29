@@ -3,6 +3,7 @@
 #include <string>
 #include <thread>
 #include <chrono>
+#include "number_check.h"
 
 using namespace std;
 
@@ -18,76 +19,27 @@ int main() {
 	cout << "欢迎来到猜数字游戏！" << endl;
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "接下来进行难度选择\n1为\t简单\n2为\t普通\n3为\t困难\n4为\t噩梦\n5为\t地狱\n6为\t自定义" << endl;
-	cout << "请输入难度选择(输入整数1到6）" << endl;
+	
+	get_valid_int(difficulty, 1, 6, "请输入难度选择(输入整数1到6）: ");
 
-	while (true) {
-		cin >> difficulty;
-		if (cin.fail() || difficulty < 1 || difficulty>6) {
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			cout << "输入错误，请重新输入（1到6的整数）:" << endl;
-		}
-		else {
-			break;
-		}
+	
+	int difficulty_set[2][6] = { {100, 100, 1000, 5000, 50000, 0},
+							     { 10 , 6 , 12 ,  15 ,  20  ,  0} };
+	string difficulty_names[6] = { "简单","普通","困难","噩梦","地狱","自定义" };
+	
+	
+	max_num = difficulty_set[0][difficulty - 1];
+	chance = difficulty_set[1][difficulty - 1];
+	difficulty_name = difficulty_names[difficulty - 1];
+	
+if (difficulty == 6) { 
+	get_valid_int(max_num, 10, 1000000, "请输入你想要的最大数字(10到1000000之间的整数）: ");
+	get_valid_int(chance, 1, 100000, "请输入你想要的猜测次数(1到100000之间的整数）: ");
+	difficulty_name = "自定义";
+		
 	}
-
-
-	switch (difficulty) {
-	case 1:
-		max_num = 100;
-		chance = 10;
-		difficulty_name = "简单";
-		break;
-	case 2:
-		max_num = 100;
-		chance = 6;
-		difficulty_name = "普通";
-		break;
-	case 3:
-		max_num = 1000;
-		chance = 12;
-		difficulty_name = "困难";
-		break;
-	case 4:
-		max_num = 5000;
-		chance = 15;
-		difficulty_name = "噩梦";
-		break;
-	case 5:
-		max_num = 50000;
-		chance = 20;
-		difficulty_name = "地狱";
-		break;
-	case 6:
-
-		cout << "请输入你想要的最大数字（大于1的整数）：" << endl;
-		while (true) {
-			cin >> max_num;
-			if (cin.fail() || max_num <= 1) {
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "输入错误，请重新输入（大于1的整数）:" << endl;
-			}
-			else {
-				break;
-			}
-		}
-
-		cout << "请输入你想要的猜测次数（大于0的整数）：" << endl;
-		while (true) {
-			cin >> chance;
-			if (cin.fail() || chance <= 0) {
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "输入错误，请重新输入（大于0的整数）:" << endl;
-			}
-			else {
-				break;
-			}
-		}
-
-	}
+	
+		
 
 
 	cout << "你选择的难度为：" << difficulty_name << "，答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << endl;
@@ -120,19 +72,8 @@ int main() {
 
 
 	while (chance > attempt) {
-		while (true) {
-			cin >> guess;
-			if (cin.fail() || guess < 1 || guess>max_num) {
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "输入错误，请重新猜测:" << endl;
-			}
-			else {
-				attempt++;
-				break;
-			}
-		}
-
+		get_valid_int(guess, 1, max_num, "你的猜测是：");
+		attempt++;
 
 		if (guess > answer) {
 			cout << "猜大了，还有" << (chance - attempt) << "次机会，" << "请再试一次：" << endl;
