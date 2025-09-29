@@ -14,7 +14,7 @@ Updating log
      add integer input judgment
 }
 
-2025.9.29   历时3小时，4次失败，成功上传更新版本     {
+2025.9.29   历时4小时，4次失败，成功上传更新版本     {
     新增数组封装数据，创建函数分文件进行整数检查    
 }
 //It took 3 hours and 4 failed attempts to successfully upload the updated version.{
