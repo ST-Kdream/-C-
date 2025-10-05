@@ -15,10 +15,15 @@ Updating log
 }
 
 2025.9.29   历时4小时，4次失败，成功上传更新版本     {
-    新增数组封装数据，创建函数分文件进行整数检查    
+    优化代码新增数组封装数据，创建函数分文件进行整数检查    
 }
 //It took 3 hours and 4 failed attempts to successfully upload the updated version.{
     Add an array to encapsulate data, and create a function in a separate file to perform integer checks.
 }
     
-            
+2025.9.29{
+     将游戏玩法封装，支持多局游戏
+}
+     //{Encapsulate the game mechanics to support multiple rounds of the game
+}
+
