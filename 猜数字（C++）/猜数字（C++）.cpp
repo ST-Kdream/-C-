@@ -18,8 +18,11 @@ bool play_again() {
 
 //主函数
 int main() {
+	bool is_win;
+	int difficulty, attempts, max_num, chance;
 	do {
-		gameway();   //调用游戏方式函数
+		gameway(is_win, difficulty, attempts, max_num, chance);   //调用游戏方式函数
+		record_save(is_win,difficulty, attempts, max_num, chance);  //调用记录保存函数
 	} while (play_again()); //询问是否再玩一次
 	
 	return 0;

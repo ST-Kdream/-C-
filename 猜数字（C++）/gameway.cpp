@@ -1,9 +1,9 @@
 #include"gameway.h"
 
-void gameway() {
+//游戏方式函数定义
+void gameway(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance) {
 	//游戏介绍和难度选择
 	cout << "欢迎来到猜数字游戏！" << endl;
-	int difficulty = 0;
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "接下来进行难度选择\n1为\t简单\n2为\t普通\n3为\t困难\n4为\t噩梦\n5为\t地狱\n6为\t自定义" << endl;
 
@@ -15,8 +15,8 @@ void gameway() {
 	string difficulty_names[6] = { "简单","普通","困难","噩梦","地狱","自定义" };
 
 	//根据选择设置参数
-	int max_num = difficulty_set[0][difficulty - 1];
-	int chance = difficulty_set[1][difficulty - 1];
+	max_num = difficulty_set[0][difficulty - 1];
+	chance = difficulty_set[1][difficulty - 1];
 	string difficulty_name = difficulty_names[difficulty - 1];
 
 	if (difficulty == 6) {
@@ -45,34 +45,62 @@ void gameway() {
 	//游戏变量
 	int answer = int_dis(gen);
 	int guess = 0;
-	int attempt = 0;
-
+	attempts = 0;
+	
 
 	//游戏主循环
 	cout << "请输入一个1到" << max_num << "之间的整数：" << endl;
 
-	while (chance > attempt) {
+	while (chance > attempts) {
 		get_valid_int(guess, 1, max_num, "你的猜测是：");
-		attempt++;
+		attempts++;
 
 		if (guess > answer) {
-			cout << "猜大了，还有" << (chance - attempt) << "次机会，" << "请再试一次：" << endl;
+			cout << "猜大了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
 		}
 
 		else if (guess < answer) {
-			cout << "猜小了，还有" << (chance - attempt) << "次机会，" << "请再试一次：" << endl;
+			cout << "猜小了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
 		}
 
 		else {
 			cout << "恭喜你，猜对了！" << endl;
-			cout << "你一共猜了" << attempt << "次" << endl;
+			cout << "你一共猜了" << attempts << "次" << endl;
 			break;
 		}
 	}
 
 	if (guess != answer) {
 		cout << "很遗憾，你没有猜中，正确答案为：" << answer << endl;
+		is_win = false;
 	}
+	else {
+		is_win = true;
+	}
+
+}
+
+//记录保存函数定义
+void record_save(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance) {
+	time_t now = time(0);
+	char time_str[26];
+	ctime_s(time_str, sizeof time_str, &now);
+	ofstream record_file("猜数字游戏记录.txt", ios::app);
+	if (record_file.is_open()) {
+		record_file << "游戏时间: " << time_str;
+		record_file << "游戏结果：" << (is_win ? "胜利" : "失败") << endl;
+		record_file << "难度等级: " << difficulty << endl;
+		record_file << "最大数字: " << max_num << endl;
+		record_file << "猜测次数: " << attempts << "/" << chance << endl;
+		record_file << "----------------------------------------" << endl;
+		record_file.close();
+		cout << "游戏记录已保存到'猜数字游戏记录.txt'" << endl;
+	}
+	else {
+		cout << "无法打开记录文件，游戏记录未保存。" << endl;
+	}
+
+	
 
 }
 
