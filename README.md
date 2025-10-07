@@ -27,3 +27,8 @@ Updating log
      //{Encapsulate the game mechanics to support multiple rounds of the game
 }
 
+2025.10.5{
+支持游戏记录保存
+}
+     //{Support game record saving
+}
