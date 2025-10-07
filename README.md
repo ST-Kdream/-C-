@@ -28,7 +28,12 @@ Updating log
 }
 
 2025.10.5{
-支持游戏记录保存
+     支持游戏记录保存
 }
      //{Support game record saving
+}
+2025.10.7{
+     修复github上传的有关问题，重新配置.gitignore
+}
+     //{Fix issues related to GitHub uploads and reconfigure .gitignore
 }
