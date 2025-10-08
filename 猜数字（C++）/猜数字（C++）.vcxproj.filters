@@ -24,6 +24,9 @@
     <ClCompile Include="gameway.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="record.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore">
@@ -35,6 +38,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="gameway.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="record.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

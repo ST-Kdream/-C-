@@ -1,4 +1,5 @@
 ﻿#include "gameway.h"      //游戏方式函数头文件
+#include "record.h"       //记录保存函数头文件
 
 using namespace std;
 
@@ -19,10 +20,11 @@ bool play_again() {
 //主函数
 int main() {
 	bool is_win;
-	int difficulty, attempts, max_num, chance;
+	int difficulty, attempts, max_num, chance, EP;
+
 	do {
-		gameway(is_win, difficulty, attempts, max_num, chance);   //调用游戏方式函数
-		record_save(is_win,difficulty, attempts, max_num, chance);  //调用记录保存函数
+		gameway_common(is_win, difficulty, attempts, max_num, chance, EP );   //调用游戏方式函数
+		record_save(is_win,difficulty, attempts, max_num, chance, EP);  //调用记录保存函数
 	} while (play_again()); //询问是否再玩一次
 	
 	return 0;
