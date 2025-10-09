@@ -7,3 +7,9 @@
 using namespace std;
 
 void record_save(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance, int& EP);
+
+bool player_information();
+
+void player_init(string name);
+
+void player_update(int& EP);

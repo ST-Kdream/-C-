@@ -22,3 +22,55 @@ void record_save(bool& is_win, int& difficulty, int& attempts, int& max_num, int
 		cout << "无法打开记录文件，游戏记录未保存。" << endl;
 	}
 }
+
+//玩家信息显示函数定义
+bool player_information() {
+	ifstream player_file("猜数字玩家信息.txt");
+	if (player_file.is_open()) {
+		string player_line;
+		cout << "玩家信息记录：" << endl;
+		while (getline(player_file, player_line)) {
+			cout << player_line << endl;
+		}
+		player_file.close();
+		return true;
+	}
+	else {
+		cout << "无法打开记录文件，无法显示玩家信息。" << endl;
+		return false;
+	}
+}
+//初始化玩家信息函数定义
+void player_init(string name) {
+	cin >> name;
+	ofstream player_init("猜数字玩家信息.txt");
+	if (player_init.is_open()) {
+		player_init << name << endl;
+		player_init << "总经验值：" << 0 << endl;
+	}
+}
+
+//玩家经验值信息更新函数定义
+void player_update(int& EP) {
+	int sum_EP;
+	string EP_line;
+	string first_line;
+	fstream player_file("猜数字玩家信息.txt");
+	if (player_file.is_open()) {
+		getline(player_file, first_line);
+		getline(player_file, EP_line);
+		size_t pos = EP_line.find("：");
+		if (pos != string::npos) {
+			string EP_str = EP_line.substr(pos + 1);
+			sum_EP = stoi(EP_str);
+			sum_EP += EP;
+		}
+		else {
+			cout << "玩家信息格式错误，无法读取经验值。" << endl;
+		}
+		string new_EP_line = "总经验值：" + to_string(sum_EP);
+		player_file << first_line << endl;
+		player_file << new_EP_line << endl;
+		player_file.close();
+		}
+}
