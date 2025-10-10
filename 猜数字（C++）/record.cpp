@@ -40,14 +40,22 @@ bool player_information() {
 		return false;
 	}
 }
+
 //初始化玩家信息函数定义
-void player_init(string name) {
+void player_init(string name,int& go_first) {
 	cin >> name;
 	ofstream player_init("猜数字玩家信息.txt");
 	if (player_init.is_open()) {
 		player_init << name << endl;
 		player_init << "总经验值：" << 0 << endl;
+		player_init.close();
 	}
+	else {
+		cout << "无法创建玩家信息文件，玩家信息未保存。" << endl;
+	}
+	cout << "玩家信息已保存，欢迎你，" << name << "！" << endl;
+	go_first = 1;
+	
 }
 
 //玩家经验值信息更新函数定义
@@ -72,5 +80,20 @@ void player_update(int& EP) {
 		player_file << first_line << endl;
 		player_file << new_EP_line << endl;
 		player_file.close();
+	}
+}
+		
+//显示游戏规则函数定义
+void show_rules() {
+	ifstream rule_file("猜数字游戏规则.txt");
+	if (rule_file.is_open()) {
+		string rule_line;
+		while (getline(rule_file, rule_line)) {
+			cout << rule_line << endl;
 		}
+		rule_file.close();
+    }
+	else {
+		cout << "无法打开规则文件，无法显示游戏规则。" << endl;
+	}
 }
