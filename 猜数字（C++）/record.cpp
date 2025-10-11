@@ -63,26 +63,39 @@ void player_update(int& EP) {
 	int sum_EP;
 	string EP_line;
 	string first_line;
-	fstream player_file("猜数字玩家信息.txt");
+	fstream player_file("猜数字玩家信息.txt",ios::in|ios::out);
 	if (player_file.is_open()) {
 		getline(player_file, first_line);
 		getline(player_file, EP_line);
 		size_t pos = EP_line.find("：");
 		if (pos != string::npos) {
-			string EP_str = EP_line.substr(pos + 1);
-			sum_EP = stoi(EP_str);
-			sum_EP += EP;
+			try {
+				sum_EP = stoi(EP_line.substr(pos)) + EP;
+			}
+			catch (const invalid_argument&) {
+				cout << "玩家信息格式错误，无法读取经验值。" << endl;
+				return;
+			}
+			catch (const out_of_range&) {
+				cout << "玩家信息中的经验值超出范围，无法读取经验值。" << endl;
+				return;
+			}
 		}
 		else {
 			cout << "玩家信息格式错误，无法读取经验值。" << endl;
 		}
-		string new_EP_line = "总经验值：" + to_string(sum_EP);
+		player_file.seekp(0);
 		player_file << first_line << endl;
-		player_file << new_EP_line << endl;
+		player_file << "总经验值：" << sum_EP << endl;
+		player_file.flush();
 		player_file.close();
+		cout << "经验值已更新，你当前的总经验值为：" << sum_EP << endl
+			;
+		
 	}
 }
 		
+
 //显示游戏规则函数定义
 void show_rules() {
 	ifstream rule_file("猜数字游戏规则.txt");

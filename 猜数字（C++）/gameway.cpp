@@ -72,6 +72,7 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 	int answer = int_dis(gen);
 	int guess = 0;
 	attempts = 0;
+	cout << answer << endl;
 	
 
 	//ÓÎÏ·Ö÷Ñ­»·
