@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <ctime>
+#include <limits>
 
 using namespace std;
 //游戏记录保存函数头文件
