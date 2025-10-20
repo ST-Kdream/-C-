@@ -58,12 +58,7 @@ void player_init(string name,int& go_first) {
 }
 
 //玩家经验值信息更新函数定义
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <limits>
 
-using namespace std;
 
 void player_update(int& EP) {
 	int sum_EP = 0;

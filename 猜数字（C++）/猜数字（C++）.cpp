@@ -24,7 +24,8 @@ int main() {
 	int go_first = 1;
 	int error = 0;
 	bool is_win;
-	int difficulty, attempts, max_num, chance, EP;
+	int difficulty, attempts, max_num, chance, level, EP;
+	int gameway_choice;
 
 	get_valid_int(init_choice, 1, 3, "欢迎来到猜数字游戏！\n按1为\t玩家信息\n按2为\t开始游戏\n按3为\t游戏规则\n");
 
@@ -44,10 +45,23 @@ int main() {
 			}
 		case 2:
 			do {
-				gameway_common(is_win, difficulty, attempts, max_num, chance, EP);   //调用游戏方式函数
-				record_save(is_win, difficulty, attempts, max_num, chance, EP);  //调用记录保存函数
-				if (is_win) {
-					player_update(EP);
+				get_valid_int(gameway_choice, 1, 2, "请选择游戏模式：\n按1为\t普通模式\n按2为\t挑战模式");
+				if (gameway_choice == 1)
+				{
+					gameway_common(is_win, difficulty, attempts, max_num, chance, EP);   //调用游戏方式函数
+					record_save(is_win, difficulty, attempts, max_num, chance, EP);  //调用记录保存函数
+					if (is_win) 
+					{
+						player_update(EP);  //调用玩家经验值信息更新函数
+					}
+				}
+				
+				else if (gameway_choice == 2)
+				{
+					gameway_challenge(is_win, level, attempts, max_num, chance, EP);   //调用游戏方式函数
+					record_save(is_win, level, attempts, max_num, chance, EP);  //调用记录保存函数
+					int update_EP = is_win ? EP : -EP;
+					player_update(update_EP);
 				}
 			} while (play_again(go_first)); //询问是否再玩一次
 			break;

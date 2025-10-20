@@ -1,9 +1,53 @@
 #include"gameway.h"
 
-//游戏方式函数定义
+void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win)
+{
+	//随机数生成器
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<>int_dis(1, max_num);
+
+	//游戏变量
+	int answer = int_dis(gen);
+	int guess = 0;
+	attempts = 0;
+
+	//游戏主循环
+	cout << "请输入一个1到" << max_num << "之间的整数：" << endl;
+
+	while (chance > attempts) {
+		get_valid_int(guess, 1, max_num, "你的猜测是：");
+		attempts++;
+
+		if (guess > answer) {
+			cout << "猜大了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
+		}
+
+		else if (guess < answer) {
+			cout << "猜小了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
+		}
+
+		else {
+			cout << "恭喜你，猜对了！" << endl;
+			cout << "你一共猜了" << attempts << "次" << endl;
+			break;
+		}
+	}
+
+	if (guess != answer) {
+		cout << "很遗憾，你没有猜中，正确答案为：" << answer << endl;
+		is_win = false;
+	}
+	else {
+		is_win = true;
+	}
+
+}
+
+//普通模式函数定义
 void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance , int& EP) {
 	//游戏介绍和难度选择
-	cout << "欢迎来到猜数字游戏！" << endl;
+	cout << "欢迎来到猜数字游戏（普通模式）！" << endl;
 	this_thread::sleep_for(chrono::seconds(1));
 	cout << "接下来进行难度选择\n1为\t简单\n2为\t普通\n3为\t困难\n4为\t噩梦\n5为\t地狱\n6为\t自定义" << endl;
 
@@ -63,50 +107,63 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 	}
 	cout << "游戏开始！" << endl;
 
-
-	//随机数生成器
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution<>int_dis(1, max_num);
-	//游戏变量
-	int answer = int_dis(gen);
-	int guess = 0;
-	attempts = 0;
-	cout << answer << endl;
-	
-
-	//游戏主循环
-	cout << "请输入一个1到" << max_num << "之间的整数：" << endl;
-
-	while (chance > attempts) {
-		get_valid_int(guess, 1, max_num, "你的猜测是：");
-		attempts++;
-
-		if (guess > answer) {
-			cout << "猜大了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
-		}
-
-		else if (guess < answer) {
-			cout << "猜小了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
-		}
-
-		else {
-			cout << "恭喜你，猜对了！" << endl;
-			cout << "你一共猜了" << attempts << "次" << endl;
-			break;
-		}
-	}
-
-	if (guess != answer) {
-		cout << "很遗憾，你没有猜中，正确答案为：" << answer << endl;
-		is_win = false;
-	}
-	else {
-		is_win = true;
-	}
-
+	void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win);
 }
 
+//挑战模式函数定义
+void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, int& chance, int& EP)
+{
+	cout << "欢迎来到猜数字游戏（挑战模式）！" << endl;
+	this_thread::sleep_for(chrono::seconds(1));
+	cout << "你将有9个难度等级可供挑战" << endl;
+	get_valid_int(level, 1, 9, "接下来请选择你想要挑战的难度等级： ");
+	
+	//根据选择设置参数
+	class LevelSetting
+	{
+	public:
+		int level_num;
+		int max_num, chance, EP;
+		LevelSetting(int Level_max_num, int Level_chance, int Level_EP, int Level_level_num)
+		{
+			max_num = Level_max_num;
+			chance = Level_chance;
+			EP = Level_EP;
+			level_num = Level_level_num;
+		}
+	};
+
+	// 定义并初始化难度参数
+	vector <LevelSetting> level_settings = 
+	{
+		{100, 6, 20, 1},
+		{2000, 14, 30, 2},
+		{5000 ,16, 45, 3},
+		{8000, 16, 50, 4},
+    	{10000, 18, 55, 5},
+		{60000, 20, 65, 6},
+		{100000, 25, 70, 7},
+		{200000, 35, 80, 8},
+		{10000000, 40, 100, 9}
+	};
+
+	//根据选择设置参数
+	max_num = level_settings[level - 1].max_num;
+	chance = level_settings[level - 1].chance;
+	EP = level_settings[level - 1].EP;
+	level = level_settings[level - 1].level_num;
+	cout << "你选择的难度等级为：" << level << "，答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << endl;
+
+	//游戏开始倒计时
+	cout << "游戏将在3秒后开始，请做好准备！" << endl;
+	for (int enter_time = 3; enter_time > 0; enter_time--)
+	{
+		cout << enter_time << endl;
+	}
+	cout << "游戏开始！" << endl;
+
+	void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win);
+}
 
 	
 

@@ -13,5 +13,7 @@
 
 using namespace std;
 
-//函数声明
+//普通模式函数头文件
 void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance, int& EP);
+//挑战模式函数头文件
+void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, int& chance, int& EP);
