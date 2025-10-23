@@ -25,7 +25,6 @@
 *.log
 
 #忽略游戏记录文件
-猜数字（C++）/猜数字游戏记录.txt
-猜数字（C++）/猜数字游戏记录.txt.txt
-猜数字（C++）/猜数字玩家信息.txt
+player_information.txt
+game_record/猜数字游戏记录.txt
 

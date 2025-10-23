@@ -107,7 +107,7 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 	}
 	cout << "游戏开始！" << endl;
 
-	void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win);
+	gameway_all(max_num, chance, attempts, is_win);
 }
 
 //挑战模式函数定义
@@ -159,10 +159,11 @@ void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, in
 	for (int enter_time = 3; enter_time > 0; enter_time--)
 	{
 		cout << enter_time << endl;
+		this_thread::sleep_for(chrono::seconds(1));
 	}
 	cout << "游戏开始！" << endl;
 
-	void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win);
+	gameway_all(max_num, chance, attempts, is_win);
 }
 
 	

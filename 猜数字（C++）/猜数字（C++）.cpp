@@ -45,7 +45,7 @@ int main() {
 			}
 		case 2:
 			do {
-				get_valid_int(gameway_choice, 1, 2, "请选择游戏模式：\n按1为\t普通模式\n按2为\t挑战模式");
+				get_valid_int(gameway_choice, 1, 2, "请选择游戏模式：\n按1为\t普通模式\n按2为\t挑战模式\n");
 				if (gameway_choice == 1)
 				{
 					gameway_common(is_win, difficulty, attempts, max_num, chance, EP);   //调用游戏方式函数
@@ -67,7 +67,7 @@ int main() {
 			break;
 		case 3:
 			show_rules();
-			get_valid_int(go_first, 0, 1, "返回请输入1，退出请输入0：");
+			get_valid_int(init_choice, 1, 3, "欢迎来到猜数字游戏！\n按1为\t玩家信息\n按2为\t开始游戏\n按3为\t游戏规则\n");
 		}
 
 	//处理特殊情况
