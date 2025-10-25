@@ -166,7 +166,95 @@ void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, in
 	gameway_all(max_num, chance, attempts, is_win);
 }
 
-	
+//无尽模式函数定义
+void gameway_endless(bool& is_win, int& episode, int& attempts, int& max_num, int& chance, int& EP, int& update_EP)
+{
+	cout<<"欢迎来到猜数字游戏（无尽模式）"<<endl;
+	cout << "游戏即将开始，请做好准备！" << endl;
+	update_EP = 0;
+	is_win = true;
+	episode = 1;
+	max_num = 100;
+	chance = 10;
+	EP = 5;
+	for (int i = 3; i > 0; i--)
+	{
+		cout << i << endl;
+		this_thread::sleep_for(chrono::seconds(1));
+	}
+	while(is_win)
+	{ 
+		cout << "第" << episode << "关开始！" << endl;
+		cout << "答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << endl;
+		cout << "如果胜利，你将获得" << EP << "经验" << endl;
+		gameway_all(max_num, chance, attempts, is_win);
+		if (is_win)
+		{
+			update_EP += EP;
+			cout << "恭喜你通过了第" << episode << "关！你当前总经验值为：" << update_EP << endl;
+			episode++;
+			if (episode <= 6)
+			{
+				max_num += 100;
+				chance += 1;
+			}
+			else if (episode <= 15)
+			{
+				cout << "不错啊，继续加油！" << endl;
+				max_num += 400;
+				chance += 2;
+				EP = 6;
+			}
+			else if(episode<=30)
+			{
+				cout << "你真厉害，继续保持！" << endl;
+				max_num += 800;
+				chance += 3;
+				EP = 10;
+			}
+			else if (episode <= 40)
+			{
+				cout << "上难度了，继续前进！" << endl;
+				max_num += 1200;
+				chance += 3;
+				EP = 15;
+			}
+			else if (episode <= 55)
+			{
+				cout << "不可思议，你居然还在继续！" << endl;
+				max_num += 2000;
+				chance += 4;
+				EP += 2;
+			}
+			else if (episode <= 75)
+			{
+				cout << "你是无敌的吧！" << endl;
+				max_num += 5000;
+				chance += 4;
+				EP += 5;
+			}
+			else if (episode <= 100)
+			{
+				cout << "史诗级别的挑战！" << endl;
+				max_num += 15000;
+				chance += 5;
+				EP += 10;
+			}
+			else
+			{
+				cout << "享受无尽的挑战吧！" << endl;
+				max_num += 50000;
+				chance += 3;
+				EP += 25;
+			}
+			this_thread::sleep_for(chrono::seconds(1));
+		}
+		else
+		{
+			cout << "很遗憾，你未能通过第" << episode << "关，游戏结束！你最终的总经验值为：" << update_EP << endl;
+		}
+	}
+}
 
 
 

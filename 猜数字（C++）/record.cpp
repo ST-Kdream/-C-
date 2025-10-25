@@ -1,7 +1,7 @@
 #include "record.h"
 
 //记录保存函数定义
-void record_save(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance,int& EP) {
+void record_save(bool& is_win, string mode, int& difficulty, int& attempts, int& max_num, int& chance,int& EP) {
 	time_t now = time(0);
 	char time_str[26];
 	ctime_s(time_str, sizeof time_str, &now);
@@ -10,6 +10,7 @@ void record_save(bool& is_win, int& difficulty, int& attempts, int& max_num, int
 		record_file << "游戏时间: " << time_str;
 		record_file << "游戏结果：" << (is_win ? "胜利" : "失败") << "  ";
 		record_file << "获得经验：" << (is_win ? EP : 0) << endl;
+        record_file << "游戏模式：" << mode << "   ";
 		record_file << "难度等级: " << difficulty << endl;
 		record_file << "最大数字: " << max_num << endl;
 		record_file << "猜测次数: " << attempts << "/" << chance << endl;
