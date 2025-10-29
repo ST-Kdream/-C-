@@ -4,6 +4,8 @@
 #include <string>
 #include <ctime>
 #include <limits>
+#include<vector>
+#include<stdexcept>
 
 using namespace std;
 //游戏记录保存函数头文件
@@ -13,7 +15,9 @@ bool player_information();
 //初始化玩家信息函数头文件
 void player_init(string name,int& go_first);
 //玩家经验值信息更新函数头文件
-void player_update(int& EP);
+int player_update(int& EP);
+//段位更新函数头文件
+void rank_update(string rank_name);
 //显示游戏规则函数头文件
 void show_rules();
 

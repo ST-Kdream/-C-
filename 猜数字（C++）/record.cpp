@@ -48,6 +48,7 @@ void player_init(string name,int& go_first) {
 	if (player_init.is_open()) {
 		player_init << name << endl;
 		player_init << "总经验值:" << 0 << endl;
+        player_init << "段位：迷雾探索者" << endl;
 		player_init.close();
 	}
 	else {
@@ -59,10 +60,12 @@ void player_init(string name,int& go_first) {
 }
 
 //玩家经验值信息更新函数定义
-void player_update(int& EP) {
+int player_update(int& EP) 
+{
     int sum_EP;  
     string EP_line;  
     string first_line;  
+    string rank_line;
     // 用binary模式打开，避免换行符转换导致的乱码
     fstream player_file("player_information.txt", ios::in | ios::out | ios::binary);  
 
@@ -70,6 +73,7 @@ void player_update(int& EP) {
         // 读取第一行（玩家名）和第二行（经验值行）
         getline(player_file, first_line);
         getline(player_file, EP_line);
+        getline(player_file, rank_line);
 
         // 查找冒号（兼容中文“：”和英文“:”）
         size_t pos = EP_line.find("：");
@@ -77,23 +81,35 @@ void player_update(int& EP) {
             pos = EP_line.find(":");  // 补充英文冒号兼容
         }
 
-        if (pos != string::npos) {
+        if (pos != string::npos) 
+        {
             // 截取冒号后内容，并过滤出纯半角数字（解决格式错误核心）
             string num_str = EP_line.substr(pos + 1);  // 跳过冒号
             string pure_num;  // 临时变量，用于存储过滤后的数字
             // 用ASCII范围判断半角数字（替代isdigit，避免误判）
-            for (char c : num_str) {
-                if (c >= '0' && c <= '9') {  // 只保留0-9的半角数字
+            for (char c : num_str) 
+            {
+                if (c >= '0' && c <= '9')    // 只保留0-9的半角数字
+                {  
                     pure_num += c;
                 }
             }
 
             // 检查是否提取到有效数字
-            if (pure_num.empty()) {
-                cout << "玩家信息格式错误，未找到有效数字（仅支持半角0-9）。" << endl;
-                player_file.close();
-                return;
+            try
+            {
+                if (pure_num.empty())
+                {
+                    player_file.close();
+                    throw runtime_error("更新玩家信息错误");
+                }
             }
+            catch (const exception& e)
+            {
+                cout << "玩家信息格式错误，未找到有效数字（仅支持半角0-9）。" << endl;
+                exit(12);
+            }
+            
 
             // 转换数字并计算总经验值
             try {
@@ -102,12 +118,12 @@ void player_update(int& EP) {
             catch (const invalid_argument&) {
                 cout << "玩家信息格式错误，无法读取经验值。" << endl;
                 player_file.close();
-                return;
+                exit(13);
             }
             catch (const out_of_range&) {
                 cout << "玩家信息中的经验值超出范围，无法读取经验值。" << endl;
-                player_file.close();
-                return;
+                player_file.close();;
+                exit(14);
             }
 
             // 关闭原文件，用truncate模式重新打开写入（解决truncate成员错误）
@@ -117,8 +133,10 @@ void player_update(int& EP) {
                 // 写回玩家名和新经验值行（用\r\n避免换行符乱码）
                 out_file << first_line << "\r\n";
                 out_file << "总经验值：" << sum_EP << "\r\n";
+                out_file << rank_line << "\r\n";
                 out_file.close();
                 cout << "经验值更新成功！当前总经验值：" << sum_EP << endl;
+                return sum_EP;
             }
             else {
                 cout << "无法写入文件，可能被占用。" << endl;
@@ -138,17 +156,59 @@ void player_update(int& EP) {
     }
 }
 
+//段位更新函数头文件
+void rank_update(string rank_name)
+{
+    string rank_line = "玩家段位为：" + rank_name;
+    vector <string> fline;
+    ifstream in_file("player_information.txt");
+    if (in_file.is_open())
+    {
+        string line;
+        while (getline(in_file, line))
+        {
+            fline.push_back(line);
+        }
+        in_file.close();
+    }
+    else
+        cout << "更新段位时文件打开失败！" << endl;
+
+    if (fline.size() == 3)
+    {
+        fline[2] = rank_line;
+    }
+    else
+        cout << "玩家信息格式错误！" << endl;
+
+    ofstream out_file("player_information.txt");
+    if (out_file.is_open())
+    {
+        for (const auto& out_line : fline)
+        {
+            out_file << out_line << "\r\n";
+        }
+        cout << "段位更新成功，你现在的段位是：" << rank_name << endl;
+    }
+    else
+    {
+        cout << "玩家信息文件无法打开" << endl;
+    }
+}
+
 //显示游戏规则函数定义
 void show_rules() {
 	ifstream rule_file("game_rules.txt");
 	if (rule_file.is_open()) {
 		string rule_line;
-		while (getline(rule_file, rule_line)) {
+		while (getline(rule_file, rule_line)) 
+        {
 			cout << rule_line << endl;
 		}
 		rule_file.close();
     }
-	else {
+	else
+    {
 		cout << "无法打开规则文件，无法显示游戏规则。" << endl;
 	}
 }
