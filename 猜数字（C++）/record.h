@@ -20,4 +20,6 @@ int player_update(int& EP);
 void rank_update(string rank_name);
 //显示游戏规则函数头文件
 void show_rules();
+//统一更新函数
+void update_all(int update_EP);
 

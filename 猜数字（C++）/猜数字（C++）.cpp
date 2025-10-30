@@ -64,12 +64,8 @@ int main()
 				{
 					gameway_common(is_win, difficulty, attempts, max_num, chance, EP);   //调用游戏方式函数
 					record_save(is_win, "普通模式", difficulty, attempts, max_num, chance, EP);  //调用记录保存函数
-					if (is_win)
-					{
-						sum_EP = player_update(EP);  //调用玩家经验值信息更新函数
-						rank_name = Rank::update_rank(sum_EP, rankings);
-						rank_update(rank_name);
-					}
+					update_EP = is_win ? EP : 0;
+					update_all(update_EP);
 				}
 
 				else if (gameway_choice == 2)
@@ -77,18 +73,14 @@ int main()
 					gameway_challenge(is_win, level, attempts, max_num, chance, EP);   //调用游戏方式函数
 					update_EP = is_win ? EP : -EP;
 					record_save(is_win, "挑战模式", level, attempts, max_num, chance, update_EP);  //调用记录保存函数
-					sum_EP = player_update(update_EP);
-					rank_name = Rank::update_rank(sum_EP, rankings);
-					rank_update(rank_name);
+					update_all(update_EP);
 				}
 
 				else if (gameway_choice == 3)
 				{
 					gameway_endless(is_win, episode, attempts, max_num, chance, EP, update_EP);   //调用游戏方式函数
 					record_save(is_win, "无尽模式", episode, attempts, max_num, chance, update_EP);  //调用记录保存函数
-					sum_EP = player_update(update_EP);
-					rank_name = Rank::update_rank(sum_EP, rankings);
-					rank_update(rank_name);
+					update_all(update_EP);
 				}
 			} while (play_again(go_first,error)); //询问是否再玩一次
 			break;

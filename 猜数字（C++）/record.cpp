@@ -1,4 +1,5 @@
 #include "record.h"
+#include "rank.h"
 
 //记录保存函数定义
 void record_save(bool& is_win, string mode, int& difficulty, int& attempts, int& max_num, int& chance,int& EP) {
@@ -107,6 +108,7 @@ int player_update(int& EP)
             catch (const exception& e)
             {
                 cout << "玩家信息格式错误，未找到有效数字（仅支持半角0-9）。" << endl;
+                player_file.close();
                 exit(12);
             }
             
@@ -188,6 +190,7 @@ void rank_update(string rank_name)
         {
             out_file << out_line << "\r\n";
         }
+        out_file.close();
         cout << "段位更新成功，你现在的段位是：" << rank_name << endl;
     }
     else
@@ -211,4 +214,12 @@ void show_rules() {
     {
 		cout << "无法打开规则文件，无法显示游戏规则。" << endl;
 	}
+}
+
+//统一更新函数定义
+void update_all(int update_EP)
+{
+    int sum_EP = player_update(update_EP);  //调用玩家经验值信息更新函数
+    string rank_name = Rank::update_rank(sum_EP, rankings);
+    rank_update(rank_name);
 }
