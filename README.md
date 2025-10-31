@@ -1,44 +1,27 @@
-#猜数字项目（第一个正式项目）；      
-//Number Guessing Project (First Official Project)；
+# 猜数字游戏（C++）- Number Guessing Game
+这是一个以 **代码练手** 为核心的C++猜数字项目，会随新知识点学习持续优化功能、迭代代码结构，目标是在实践中提升编程能力，同时打造一款玩法丰富的轻量级小游戏。
 
-代码练手，经常有新点子，学了新代码，会时刻更新； 
-//Practicing coding, often having new ideas, learning new code, and updating constantly；
 
-#更新日志；
-Updating log；
+## 项目核心信息
+- **开发语言**：C++
+- **适用场景**：C++基础语法练习、模块化编程实践、数据持久化学习
+- **运行环境**：支持C++11及以上标准的编译器（如GCC、Clang、Visual Studio）
 
-2025.9.28   历时1个半小时，成功上传2.4版本猜数字{
-    新增整数输入判断   
-}；
-//It took one and a half hours to successfully upload version 2.4 of Guess the Number{
-     add integer input judgment
-}；
 
-2025.9.29   历时4小时，4次失败，成功上传更新版本     {
-    优化代码新增数组封装数据，创建函数分文件进行整数检查    
-}；
-//It took 3 hours and 4 failed attempts to successfully upload the updated version.{
-    Add an array to encapsulate data, and create a function in a separate file to perform integer checks.
-}；
-    
-2025.9.29{
-     将游戏玩法封装，支持多局游戏
-}；
-     //{Encapsulate the game mechanics to support multiple rounds of the game
-}；
+## 游戏核心功能
+1. **多模式玩法**：包含普通、挑战、无尽三种模式，适配不同需求（休闲娱乐、难度挑战、长线游玩）。
+2. **经验与段位系统**：根据游戏结果累计经验值（EP），经验达标后自动提升段位，增强游玩成就感。
+3. **数据持久化**：自动保存游戏记录（游玩时间、模式、结果、获得EP）与玩家信息（总经验、当前段位），下次启动可无缝衔接。
+4. **输入合法性验证**：实时判断玩家输入（如数字范围、模式选择），避免非法输入导致程序异常，提升交互流畅度。
+5. **模块化代码结构**：采用类封装核心逻辑，结合vector容器管理数据，拆分独立文件处理输入检查，便于维护与扩展。
 
-2025.10.5{
-     支持游戏记录保存
-}；
-     //{Support game record saving
-}；
-2025.10.7{
-     修复github上传的有关问题，重新配置.gitignore
-}；
-     //{Fix issues related to GitHub uploads and reconfigure .gitignore
-}；
-2025.10.8{
-     完善代码结构（使用了类和vector容器），新增经验值设定
-}；
-     //{Improve code structure (using classes and vector containers), add experience value settings
-}；
+
+## 快速开始
+1. 克隆本仓库至本地：`git clone https://github.com/ST-Kdream/-C-.git`
+2. 使用支持C++11及以上的编译器打开项目文件（如“猜数字（C++）.sln”）
+3. 编译并运行程序，根据主菜单提示选择游戏模式即可开始
+
+
+## 注意事项
+- 游戏记录默认保存至 `game_record.txt`，玩家信息保存至 `player_information.txt`，请勿随意删除这两个文件（删除会导致记录丢失）。
+- 若需自定义游戏难度（如普通模式的数字范围、猜测次数），可在启动后选择“自定义难度”选项进行设置。
