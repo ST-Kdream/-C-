@@ -30,6 +30,9 @@
     <ClCompile Include="rank.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="V_update.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore">
@@ -47,6 +50,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="rank.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="V_update.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

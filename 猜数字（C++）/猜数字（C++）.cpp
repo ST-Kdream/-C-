@@ -1,6 +1,7 @@
-﻿#include "gameway.h"      //游戏方式函数头文件
-#include "record.h"       //记录保存函数头文件
+﻿#include "gameway.h"      //游戏系统头文件
+#include "record.h"       //记录系统头文件
 #include "rank.h"        //段位系统头文件
+#include "V_update.h"    //更新系统头文件
 
 using namespace std;
 
@@ -26,6 +27,13 @@ bool play_again(int& go_first, int& error)
 //主函数
 int main() 
 {
+	curl_global_init(CURL_GLOBAL_DEFAULT);
+	version_check();
+	cout << "按回车键进入游戏..." << endl;
+	cin.get();
+	curl_global_cleanup();
+
+
 	int init_choice;
 	int go_first = 1;
 	int error = 0;

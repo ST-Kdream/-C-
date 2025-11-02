@@ -127,6 +127,7 @@
     <ClCompile Include="number_check.cpp" />
     <ClCompile Include="rank.cpp" />
     <ClCompile Include="record.cpp" />
+    <ClCompile Include="V_update.cpp" />
     <ClCompile Include="猜数字（C++）.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +138,7 @@
     <ClInclude Include="gameway.h" />
     <ClInclude Include="rank.h" />
     <ClInclude Include="record.h" />
+    <ClInclude Include="V_update.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
