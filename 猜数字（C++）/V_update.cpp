@@ -2,10 +2,19 @@
 
 size_t WriteCallback(void* contents, size_t size, size_t numemb, string* s)
 {
+	if (s == nullptr)
+		return 0;
+	const size_t max_accept = 100;
 	size_t length = size * numemb;
+	if (s->size() + length > max_accept)
+	{
+		length = max_accept - s->size();
+		if (length <= 0) 
+			return 0;
+	}
 	try
 	{
-		s->append((char)contents, length);
+		s->append((char*)contents, length);
 	}
 	catch (bad_alloc& e)
 	{
@@ -21,11 +30,16 @@ string get_remote_version()
 	if (curl)
 	{
 		curl_easy_setopt(curl, CURLOPT_URL, Remote_Version_URL);
-		curl_easy_setopt(curl, CURLOPT_TIMEOUT, 15L);
+		curl_easy_setopt(curl, CURLOPT_USERAGENT,
+			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36");
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10L);
+		curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L); 
+		curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 5L);      
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, &respond);
 
 		CURLcode res = curl_easy_perform(curl);
+		
 		if (res != CURLE_OK)
 		{
 			cerr << "ÍøÂçÁ¬½ÓÊ§°Ü£¬Çë¼ì²éÍøÂçÉèÖÃ£¡" << endl;
@@ -44,34 +58,42 @@ string get_remote_version()
 
 bool is_update(const string& local_version, const string& remote_version)
 {
+	bool answer;
 	auto split_version = [](const string& version)->vector<size_t>
-	{
-		vector<size_t> version_part;
-		stringstream ss(version);
-		string temp_part;
-
-		while (getline(ss, temp_part, '.'))
 		{
-			try
+			vector<size_t> version_part;
+			stringstream ss(version);
+			string temp_part;
+
+			while (getline(ss, temp_part, '.') && version_part.size() < 3)
 			{
-				version_part.push_back(stoi(temp_part));
+				try
+				{
+					version_part.push_back(stoi(temp_part));
+				}
+				catch (...)
+				{
+					return {};
+				}
 			}
-			catch (...)
-			{
+			if (version_part.size() != 3)
 				return {};
-			}
-		}
-		return version_part;
-	};
+			return version_part;
+		};
 	auto local_part = split_version(local_version);
 	auto remote_part = split_version(remote_version);
 
 	for (int i = 0; i <= 2; i++)
 	{
 		if (local_part[i] == remote_part[i])
-			return true;
+			answer = true;
+		else
+		{
+			answer = false;
+			break;
+		}
 	}
-	return false;
+	return answer;
 }
 
 void version_check()
