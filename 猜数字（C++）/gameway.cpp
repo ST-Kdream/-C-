@@ -3,9 +3,9 @@
 void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win)
 {
 	//随机数生成器
-	random_device rd;
-	mt19937 gen(rd());
-	uniform_int_distribution<>int_dis(1, max_num);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<>int_dis(1, max_num);
 
 	//游戏变量
 	int answer = int_dis(gen);
@@ -13,7 +13,7 @@ void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win)
 	attempts = 0;
 
 	//游戏主循环
-	cout << "请输入一个1到" << max_num << "之间的整数：" << endl;
+	std::cout << "请输入一个1到" << max_num << "之间的整数：" << std::endl;
 
 	while (chance > attempts) 
 	{
@@ -21,20 +21,20 @@ void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win)
 		attempts++;
 
 		if (guess > answer) 
-			cout << "猜大了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
+			std::cout << "猜大了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << std::endl;
 		else if (guess < answer) 
-			cout << "猜小了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << endl;
+			std::cout << "猜小了，还有" << (chance - attempts) << "次机会，" << "请再试一次：" << std::endl;
 		else 
 		{
-			cout << "恭喜你，猜对了！" << endl;
-			cout << "你一共猜了" << attempts << "次" << endl;
+			std::cout << "恭喜你，猜对了！" << std::endl;
+			std::cout << "你一共猜了" << attempts << "次" << std::endl;
 			break;
 		}
 	}
 
 	if (guess != answer) 
 	{
-		cout << "很遗憾，你没有猜中，正确答案为：" << answer << endl;
+		std::cout << "很遗憾，你没有猜中，正确答案为：" << answer << std::endl;
 		is_win = false;
 	}
 	else 
@@ -46,9 +46,9 @@ void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win)
 void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance , int& EP) 
 {
 	//游戏介绍和难度选择
-	cout << "欢迎来到猜数字游戏（普通模式）！" << endl;
-	this_thread::sleep_for(chrono::seconds(1));
-	cout << "接下来进行难度选择\n1为\t简单\n2为\t普通\n3为\t困难\n4为\t噩梦\n5为\t地狱\n6为\t自定义" << endl;
+	std::cout << "欢迎来到猜数字游戏（普通模式）！" << std::endl;
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::cout << "接下来进行难度选择\n1为\t简单\n2为\t普通\n3为\t困难\n4为\t噩梦\n5为\t地狱\n6为\t自定义" <<std::endl;
 
 	get_valid_int(difficulty, 1, 6, "请输入难度选择(输入整数1到6）: ");
 
@@ -59,9 +59,9 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 		int max_num;
 		int chance;
 		int EP;
-		string name;
+		std::string name;
 
-		DifficultySetting(int Difficulty_max_num, int Difficulty_chance, int Difficulty_EP, string difficulty_name) {
+		DifficultySetting(int Difficulty_max_num, int Difficulty_chance, int Difficulty_EP, std::string difficulty_name) {
 			max_num = Difficulty_max_num;
 			chance = Difficulty_chance;
 			EP = Difficulty_EP;
@@ -70,7 +70,7 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 	};
 	
 	// 定义并初始化难度参数
-	vector <DifficultySetting> difficulty_settings = 
+	std::vector <DifficultySetting> difficulty_settings = 
 	{
 	{100,10, 5, "简单"},
 	{100, 7, 10, "普通"},
@@ -98,17 +98,17 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 	}
 
 	//游戏开始倒计时
-	cout << "你选择的难度为：" << chosen_difficulty.name << "，答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << endl;
-	cout << "如果胜利，你将获得" << EP << "经验" << endl;
-	cout << "游戏将在3秒后开始，请做好准备！" << endl;
+	std::cout << "你选择的难度为：" << chosen_difficulty.name << "，答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << std::endl;
+	std::cout << "如果胜利，你将获得" << EP << "经验" << std::endl;
+	std::cout << "游戏将在3秒后开始，请做好准备！" << std::endl;
 	int enter_time = 3;
 	while (enter_time > 0) 
 	{
-		cout << enter_time << endl;
-		this_thread::sleep_for(chrono::seconds(1));
+		std::cout << enter_time << std::endl;
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 		enter_time--;
 	}
-	cout << "游戏开始！" << endl;
+	std::cout << "游戏开始！" << std::endl;
 
 	gameway_all(max_num, chance, attempts, is_win);
 }
@@ -116,9 +116,9 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 //挑战模式函数定义
 void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, int& chance, int& EP)
 {
-	cout << "欢迎来到猜数字游戏（挑战模式）！" << endl;
-	this_thread::sleep_for(chrono::seconds(1));
-	cout << "你将有9个难度等级可供挑战" << endl;
+	std::cout << "欢迎来到猜数字游戏（挑战模式）！" << std::endl;
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::cout << "你将有9个难度等级可供挑战" << std::endl;
 	get_valid_int(level, 1, 9, "接下来请选择你想要挑战的难度等级： ");
 	
 	//根据选择设置参数
@@ -137,7 +137,7 @@ void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, in
 	};
 
 	// 定义并初始化难度参数
-	vector <LevelSetting> level_settings = 
+	std::vector <LevelSetting> level_settings = 
 	{
 		{100, 6, 20, 1},
 		{2000, 14, 30, 2},
@@ -155,16 +155,16 @@ void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, in
 	chance = level_settings[level - 1].chance;
 	EP = level_settings[level - 1].EP;
 	level = level_settings[level - 1].level_num;
-	cout << "你选择的难度等级为：" << level << "，答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << endl;
+	std::cout << "你选择的难度等级为：" << level << "，答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << std::endl;
 
 	//游戏开始倒计时
-	cout << "游戏将在3秒后开始，请做好准备！" << endl;
+	std::cout << "游戏将在3秒后开始，请做好准备！" << std::endl;
 	for (int enter_time = 3; enter_time > 0; enter_time--)
 	{
-		cout << enter_time << endl;
-		this_thread::sleep_for(chrono::seconds(1));
+		std::cout << enter_time << std::endl;
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
-	cout << "游戏开始！" << endl;
+	std::cout << "游戏开始！" << std::endl;
 
 	gameway_all(max_num, chance, attempts, is_win);
 }
@@ -172,8 +172,8 @@ void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, in
 //无尽模式函数定义
 void gameway_endless(bool& is_win, int& episode, int& attempts, int& max_num, int& chance, int& EP, int& update_EP)
 {
-	cout<<"欢迎来到猜数字游戏（无尽模式）"<<endl;
-	cout << "游戏即将开始，请做好准备！" << endl;
+	std::cout<<"欢迎来到猜数字游戏（无尽模式）"<<std::endl;
+	std::cout << "游戏即将开始，请做好准备！" << std::endl;
 	update_EP = 0;
 	is_win = true;
 	episode = 1;
@@ -182,19 +182,19 @@ void gameway_endless(bool& is_win, int& episode, int& attempts, int& max_num, in
 	EP = 5;
 	for (int i = 3; i > 0; i--)
 	{
-		cout << i << endl;
-		this_thread::sleep_for(chrono::seconds(1));
+		std::cout << i << std::endl;
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 	while(is_win)
 	{ 
-		cout << "第" << episode << "关开始！" << endl;
-		cout << "答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << endl;
-		cout << "如果胜利，你将获得" << EP << "经验" << endl;
+		std::cout << "第" << episode << "关开始！" << std::endl;
+		std::cout << "答案在1到" << max_num << "之间，你有" << chance << "次机会猜中答案。" << std::endl;
+		std::cout << "如果胜利，你将获得" << EP << "经验" << std::endl;
 		gameway_all(max_num, chance, attempts, is_win);
 		if (is_win)
 		{
 			update_EP += EP;
-			cout << "恭喜你通过了第" << episode << "关！你当前总经验值为：" << update_EP << endl;
+			std::cout << "恭喜你通过了第" << episode << "关！你当前总经验值为：" << update_EP << std::endl;
 			episode++;
 			if (episode <= 6)
 			{
@@ -203,58 +203,58 @@ void gameway_endless(bool& is_win, int& episode, int& attempts, int& max_num, in
 			}
 			else if (episode <= 15)
 			{
-				cout << "不错啊，继续加油！" << endl;
+				std::cout << "不错啊，继续加油！" << std::endl;
 				max_num += 400;
 				chance += 2;
 				EP = 6;
 			}
 			else if(episode<=30)
 			{
-				cout << "你真厉害，继续保持！" << endl;
+				std::cout << "你真厉害，继续保持！" << std::endl;
 				max_num += 800;
 				chance += 3;
 				EP = 10;
 			}
 			else if (episode <= 40)
 			{
-				cout << "上难度了，继续前进！" << endl;
+				std::cout << "上难度了，继续前进！" << std::endl;
 				max_num += 1200;
 				chance += 3;
 				EP = 15;
 			}
 			else if (episode <= 55)
 			{
-				cout << "不可思议，你居然还在继续！" << endl;
+				std::cout << "不可思议，你居然还在继续！" << std::endl;
 				max_num += 2000;
 				chance += 4;
 				EP += 2;
 			}
 			else if (episode <= 75)
 			{
-				cout << "你是无敌的吧！" << endl;
+				std::cout << "你是无敌的吧！" << std::endl;
 				max_num += 5000;
 				chance += 4;
 				EP += 5;
 			}
 			else if (episode <= 100)
 			{
-				cout << "史诗级别的挑战！" << endl;
+				std::cout << "史诗级别的挑战！" << std::endl;
 				max_num += 15000;
 				chance += 5;
 				EP += 10;
 			}
 			else
 			{
-				cout << "享受无尽的挑战吧！" << endl;
+				std::cout << "享受无尽的挑战吧！" << std::endl;
 				max_num += 50000;
 				chance += 3;
 				EP += 25;
 			}
-			this_thread::sleep_for(chrono::seconds(1));
+			std::this_thread::sleep_for(std::chrono::seconds(1));
 		}
 		else
 		{
-			cout << "很遗憾，你未能通过第" << episode << "关，游戏结束！你最终的总经验值为：" << update_EP << endl;
+			std::cout << "很遗憾，你未能通过第" << episode << "关，游戏结束！你最终的总经验值为：" << update_EP << std::endl;
 		}
 	}
 }

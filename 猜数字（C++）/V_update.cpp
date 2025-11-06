@@ -1,6 +1,6 @@
 #include "V_update.h"
 
-size_t WriteCallback(void* contents, size_t size, size_t numemb, string* s)
+size_t WriteCallback(void* contents, size_t size, size_t numemb, std::string* s)
 {
 	if (s == nullptr)
 		return 0;
@@ -16,17 +16,17 @@ size_t WriteCallback(void* contents, size_t size, size_t numemb, string* s)
 	{
 		s->append((char*)contents, length);
 	}
-	catch (bad_alloc& e)
+	catch (std::bad_alloc& e)
 	{
 		return 0;
 	}
 	return length;
 }
 
-string get_remote_version()
+std::string get_remote_version()
 {
 	CURL* curl = curl_easy_init();
-	string respond;
+	std::string respond;
 	if (curl)
 	{
 		curl_easy_setopt(curl, CURLOPT_URL, Remote_Version_URL);
@@ -42,8 +42,8 @@ string get_remote_version()
 		
 		if (res != CURLE_OK)
 		{
-			cerr << "网络连接失败，请检查网络设置！" << endl;
-			cerr << "错误码：" << curl_easy_strerror(res) << endl;
+			std::cerr << "网络连接失败，请检查网络设置！" << std::endl;
+			std::cerr << "错误码：" << curl_easy_strerror(res) << std::endl;
 			respond = "";
 		}
 	}
@@ -56,14 +56,14 @@ string get_remote_version()
 	return respond;
 }
 
-bool is_update(const string& local_version, const string& remote_version)
+bool is_update(const std::string& local_version, const std::string& remote_version)
 {
 	bool answer;
-	auto split_version = [](const string& version)->vector<size_t>
+	auto split_version = [](const std::string& version)->std::vector<size_t>
 		{
-			vector<size_t> version_part;
-			stringstream ss(version);
-			string temp_part;
+			std::vector<size_t> version_part;
+			std::stringstream ss(version);
+			std::string temp_part;
 
 			while (getline(ss, temp_part, '.') && version_part.size() < 3)
 			{
@@ -98,22 +98,22 @@ bool is_update(const string& local_version, const string& remote_version)
 
 void version_check()
 {
-	cout << "游戏启动，正在检查更新，请稍后......" << endl;
-	string remote_version = get_remote_version();
+	std::cout << "游戏启动，正在检查更新，请稍后......" << std::endl;
+	std::string remote_version = get_remote_version();
 	if (remote_version.empty())
 	{
-		cout << "检查更新失败！" << endl;
+		std::cout << "检查更新失败！" << std::endl;
 		return;
 	}
 	if (is_update(Local_Version, remote_version))
-		cout << "已是最新版本：" << Local_Version << endl;
+		std::cout << "已是最新版本：" << Local_Version << std::endl;
 	else
 	{
-		cout << "有新版本发布！" << endl;
-		cout << "当前版本：" << Local_Version << '\t' << "最新版本：" << remote_version << endl;
-		cout << "请前往 " << New_Download_URL << " 下载新版本" << endl;
+		std::cout << "有新版本发布！" << std::endl;
+		std::cout << "当前版本：" << Local_Version << '\t' << "最新版本：" << remote_version << std::endl;
+		std::cout << "请前往 " << New_Download_URL << " 下载新版本" << std::endl;
 	}
-	cout << "________________________________________________________________________";
+	std::cout << "________________________________________________________________________";
 
 }
 

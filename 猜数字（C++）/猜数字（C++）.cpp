@@ -3,7 +3,6 @@
 #include "rank.h"        //段位系统头文件
 #include "V_update.h"    //更新系统头文件
 
-using namespace std;
 
 //询问是否再玩一次函数定义
 bool play_again(int& go_first, int& error) 
@@ -17,7 +16,7 @@ bool play_again(int& go_first, int& error)
 	}
 	else 
 	{
-		cout << endl;
+		std::cout << std::endl;
 		go_first = 0;
 		error = 1;
 		return false;
@@ -29,8 +28,8 @@ int main()
 {
 	curl_global_init(CURL_GLOBAL_DEFAULT);
 	version_check();
-	cout << "按回车键进入游戏..." << endl;
-	cin.get();
+	std::cout << "按回车键进入游戏..." << std::endl;
+	std::cin.get();
 	curl_global_cleanup();
 
 
@@ -40,7 +39,7 @@ int main()
 	bool is_win;
 	int difficulty, attempts, max_num, chance, level, EP, episode=1, update_EP, sum_EP;
 	int gameway_choice;
-	string rank_name;
+	std::string rank_name;
 
 	while (go_first == 1) 
 	{
@@ -54,12 +53,12 @@ int main()
 				bool file_exist = player_information();  //调用玩家信息显示函数
 				if (!file_exist) 
 				{
-					throw runtime_error("玩家首次游戏，未有玩家信息记录。");
+					throw std::runtime_error("玩家首次游戏，未有玩家信息记录。");
 				}
 			}
-			catch (const runtime_error&) 
+			catch (const std::runtime_error&) 
 			{
-				cout << "将收集玩家信息" << endl;
+				std::cout << "将收集玩家信息" << std::endl;
 				error = 2;
 				goto special_deal;
 			}
@@ -103,11 +102,11 @@ int main()
 		case 0:
 			break;
 		case 1:
-			cout << "感谢游玩，期待下次再见！" << endl;
+			std::cout << "感谢游玩，期待下次再见！" << std::endl;
 			break;
 		case 2:
-			cout << "请输入你的名字以初始化玩家信息：";
-			string name;
+			std::cout << "请输入你的名字以初始化玩家信息：";
+			std::string name;
 			player_init(name, go_first);  //调用初始化玩家信息函数
 			error = 0;
 			break;

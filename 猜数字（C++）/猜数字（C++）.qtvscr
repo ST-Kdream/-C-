@@ -1,0 +1,429 @@
+<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" FontFamily="Segoe UI" FontSize="12">
+  <FlowDocument.Tag><![CDATA[{
+  "timestamp": "2025-11-06 00:09:15",
+  "files": {
+    "C:\\Users\\朱孜轩\\source\\repos\\猜数字（C++）\\猜数字（C++）\\猜数字（C++）.vcxproj": {
+      "before": "7VlLb+M2EN5zgf6CXgwhCydYxHJst1k0shZdOQ2MOg+s87gUCGiJttVIpEBSebTbewv0WvTSv1CgP2D/Ttvj/oWOxIcsP9Yx0k2KIDkEMDkzHH6c+WZIDT979sx5dR1HlUvMeEhJ29qq1a0KJj4NQjJqW6kYbr60XrmffuIcMfod9kWlg4cojcQxYiMseNt6nYZRYFXACoFfYyGSL22b+2McI16LQ59RToei5tPYDvAljmiCmR3zQaZmN+r1pgXWKxWnK3C8x2iaVHpogKO2pRb0KBmGo5QhAQ5yKQzi82YrXeJHaYDbVgcP0tHbs5A0G1oDdEqm3FzGscuDmSvZn3MUITGkLHZzI45tfksJGJB4zFNf4twbHGHE8RL3lNRDOCjRu/6idVfswMRHQe5Drt0atxWdc2wToTJgIQAglMVNKWj3IjpAURGmp56Kk1OZYe7Wdq3u2DPDKqq+wTdXlAUy6DJNx9ZDSkKZ20vDwP0haDT9zxuotVn3m43NVn072HyJfLTpN+utRqu5PcRb2z+aUM11lJk3lIoDFGOeIB+7//zy+9+//vnXH795jl2eUeKQBAG94jLpdSqYLdWzLX1QJDOT+1EgprI+TigTFbWrtrW2fuopajlCYrzx7b5hEC9Jaop8aglgz62KPe8kICODMCOLtlVdWy/l58bbtXXt/Ua13a5O8ETV0sRTUtEpUCaP45sEu18lSRT6OS9NZWk+raA74ThfpRcOGGIh5q5gKXbs2XGloB08pjTiWLiXW61mkUV6VAl7Y8SQLzDrg+QJCYG4wXZpdCH2AHpxHJVVYCsx2P0BN4TM+s+QOxvTCAMEI4biw0SEcfh9fpTqeBZOPyjwhpnvD/THE61A+PcH22OJ1e5qBF0mZqlcKpC71wKTrNcEwhLQY6pSCdU1XyiXnSwNJeU+sB0OJCXfTkNzXH+MoVu1VmK5UnHIfYIiNosHEDnLimYnZNPlaqLa1FIQ03VrgmvxdcgFX4dKtbKd6oYpWT3qowjqUQcJpOuHKY+3gvYuQE2VgyeozH1lQcORM9ETTIth0hH1+IDSeVbitSz191F2VTZJm102oNsNSd7KSukJ2lits9Wh5kUejZMwwmoA+OwMMQI03Muu5m7+H5rN0qBseEC03+l5Y+xfqA7J/DQCRwwD//uYc8oK37l71j1oNnbOO7uvT/Z2zr3Dg/5hb3fn+foC+Y3spjDfklkq69Hhdo6Ij/eh5VUuTY+qXs2e3rfTC8lFgUE/HfRvOADuggEObaFjF0NmyT1MMLxCyG6+K5fPrhlq7YXT2gmzprxJFgBN1rw7nrrOm/zRolrcXe507l+nxM82mkdHtguIF7XpuVMGsS4RLIRi72sxffeZM2GUTFjJxtP8NAKLYkNG2cFTlMnI/ohRNnELeWBmeTBOATrsITJK0Qj3BSIBgkcbLgI/SRrwFjIzZYJ3eubcy9W2tmeVYEqqwX1+Kn8fPX+V6v707lerWpp7/ufs9cRbqiIv4a2iWEIYmMgoXv5H8Kh5hW5qkIm6l5ovSNJ4gNk5fKjwL5ZLM0RuI4V9eL1dbu30PE0CaCWWS5qX2ffvfvJevHj/7udJHYlVAUnxEUVTxwEluACnNoJuckQowxqb5Ra8SH1VKcyUoBtrUznMM7L6PJaI5fguk5HoLpEy2Bq52T2u9qYh5KcuvU/1BCBbcvWtyrxqqLfr+U8U5iXe/Rc=",
+      "after": "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"
+    }
+  }
+}]]></FlowDocument.Tag>
+  <Section Margin="0,24" TextAlignment="Center">
+    <Paragraph FontSize="24" FontWeight="Bold" Margin="12,0">
+      <LineBreak />
+      <Span Foreground="Gray">Qt Visual Studio Tools</Span>
+    </Paragraph>
+    <Paragraph FontSize="42" Margin="12,0" FontWeight="Bold">
+      <Span TextDecorations="Underline">Project Format Conversion</Span>
+    </Paragraph>
+    <Paragraph Margin="12,8" FontSize="18">
+      <Span>Report generated on 2025-11-06 00:09:15</Span>
+    </Paragraph>
+  </Section>
+  <Section>
+    <Paragraph FontSize="32" FontWeight="Bold" Margin="12,0">
+      <Span>Files</Span>
+    </Paragraph>
+    <Paragraph Margin="24,12,0,0">
+      <Span FontFamily="Consolas" FontSize="14" Background="WhiteSmoke"><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+      <LineBreak />
+      <Hyperlink NavigateUri="file://C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj?before">[Before]</Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj?after">[After]</Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj?diff&amp;before&amp;after">
+                        [Diff before/after]
+                    </Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj?diff&amp;before&amp;current">
+                        [Diff before/current]
+                    </Hyperlink>
+      <Hyperlink NavigateUri="file://C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj?diff&amp;after&amp;current">
+                        [Diff after/current]
+                    </Hyperlink>
+      <LineBreak />
+    </Paragraph>
+  </Section>
+  <Section>
+    <Paragraph FontSize="32" FontWeight="Bold" Margin="12,0">
+      <Span>Changes</Span>
+    </Paragraph>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Enabling multi-processor compilation]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[      <MultiProcessorCompilation>true</MultiProcessorCompilation>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Project format version]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Keyword>QtVS_v304</Keyword>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Fallback for QTMSBUILD environment variable]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Default Qt properties]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Import Project="$(QtMsBuild)\qt_defaults.props" Condition="Exists('$(QtMsBuild)\qt_defaults.props')" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt build settings]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Warn if Qt/MSBuild is not found]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') OR !Exists('$(QtMsBuild)\Qt.props')">]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  </Target>]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt property sheet]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[    <Import Project="$(QtMsBuild)\Qt.props" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+    <Paragraph FontSize="20" FontWeight="Bold" Margin="12">
+      <Span><![CDATA[🡺 Qt targets]]></Span>
+    </Paragraph>
+    <Table CellSpacing="0" BorderBrush="Gray" BorderThickness="0.5">
+      <Table.Columns>
+        <TableColumn />
+        <TableColumn />
+      </Table.Columns>
+      <TableRowGroup>
+        <TableRow Background="Orange">
+          <TableCell ColumnSpan="2" BorderThickness="0.5" BorderBrush="Gray">
+            <Paragraph Margin="10,5" FontWeight="Bold">
+              <Span><![CDATA[C:\Users\朱孜轩\source\repos\猜数字（C++）\猜数字（C++）\猜数字（C++）.vcxproj]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell ColumnSpan="2" Background="WhiteSmoke" BorderBrush="Gray" BorderThickness="0.5" />
+        </TableRow>
+        <TableRow>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0" />
+          </TableCell>
+          <TableCell BorderThickness="0, 0, 0.5, 0" BorderBrush="Gray">
+            <Paragraph FontFamily="Consolas" Margin="4, 0">
+              <Span Background="LightGreen"><![CDATA[  <Import Project="$(QtMsBuild)\qt.targets" Condition="Exists('$(QtMsBuild)\qt.targets')" />]]></Span>
+            </Paragraph>
+          </TableCell>
+        </TableRow>
+      </TableRowGroup>
+    </Table>
+  </Section>
+  <Section>
+    <Paragraph />
+  </Section>
+</FlowDocument>
+<!--B602a/1Fl4gwr3XkyyshWIf1Qj2Ag+hXLVU5AwIqhp0=-->

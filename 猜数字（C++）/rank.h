@@ -5,18 +5,16 @@
 #include<vector>
 #include<memory>
 
-using namespace std;
-
 class Rank
 {
 public:
-	string rank_name;
+	std::string rank_name;
 	int rank_EP;
 
-	Rank(string name, int EP);
+	Rank(std::string name, int EP);
 	
-	static string update_rank(int sum_EP, const vector<Rank> arr);
+	static std::string update_rank(int sum_EP, const std::vector<Rank> arr);
 	
 };
 
-extern vector<Rank> rankings;
+extern std::vector<Rank> rankings;

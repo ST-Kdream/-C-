@@ -1,26 +1,26 @@
 #include"rank.h"
 
 
-	Rank::Rank(string name, int EP)
+	Rank::Rank(std::string name, int EP)
 	{
 		rank_name = name;
 		rank_EP = EP;
 	}
 
-	string Rank::update_rank(int sum_EP, const vector<Rank> arr)
+	std::string Rank::update_rank(int sum_EP, const std::vector<Rank> arr)
 	{
 		try
 		{
 			int* sum_EP_ptr = &sum_EP;
 			if (sum_EP_ptr == nullptr)
-				throw runtime_error("更新函数运行失败的系列错误！");
+				throw std::runtime_error("更新函数运行失败的系列错误！");
 		}
-		catch (const exception& e)
+		catch (const std::exception& e)
 		{
 			exit(11);
 		}
 
-		string each_name;
+		std::string each_name;
 
 		for (Rank each_arr : arr)
 		{
@@ -35,7 +35,7 @@
 			return each_name;
 	}
 
-vector <Rank> rankings =
+std::vector <Rank> rankings =
 {
 	{"迷雾探索者",0},
 	{"数字探员",100},
