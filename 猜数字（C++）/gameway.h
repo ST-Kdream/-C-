@@ -1,18 +1,25 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <thread>
 #include <chrono>
 #include <random>
 #include <fstream>
 #include <ctime>
 #include <vector>
-#include "number_check.h" //ÊäÈëÑéÖ¤º¯ÊıÍ·ÎÄ¼ş
+#include "Qt_gui.h"
 
-
-//ÆÕÍ¨Ä£Ê½º¯ÊıÍ·ÎÄ¼ş
-void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance, int& EP);
-//ÌôÕ½Ä£Ê½º¯ÊıÍ·ÎÄ¼ş
-void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, int& chance, int& EP);
-//ÎŞ¾¡Ä£Ê½º¯ÊıÍ·ÎÄ¼ş
+std::stringstream gameway_judge(int guess, int answer, int chance, int attempts);
+//æ™®é€šæ¨¡å¼å‡½æ•°å¤´æ–‡ä»¶
+void gameway_common(int& difficulty,int& max_num, int& chance, int& EP);
+//æŒ‘æˆ˜æ¨¡å¼å‡½æ•°å¤´æ–‡ä»¶
+void gameway_challenge(int& level,int& max_num, int& chance, int& EP);
+//æ— å°½æ¨¡å¼å‡½æ•°å¤´æ–‡ä»¶
 void gameway_endless(bool& is_win, int& episode, int& attempts, int& max_num, int& chance, int& EP, int& update_EP);
+// è·å–éš¾åº¦è®¾ç½®çš„æè¿°ä¿¡æ¯
+QString getdiffinfo(int difficulty, int max_num, int chance, int EP);
+// è·å–ç­‰çº§è®¾ç½®çš„æè¿°ä¿¡æ¯
+QString getlevelinfo(int level, int max_num, int chance, int EP);
+QString endlessgammemessage(int episode);
+

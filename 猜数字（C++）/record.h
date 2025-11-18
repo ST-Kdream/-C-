@@ -6,19 +6,20 @@
 #include <limits>
 #include<vector>
 #include<stdexcept>
+#include<sstream>
 
-//ÓÎÏ·¼ÇÂ¼±£´æº¯ÊıÍ·ÎÄ¼ş
-void record_save(bool& is_win, std::string mode ,int& difficulty, int& attempts, int& max_num, int& chance, int& EP);
-//Íæ¼ÒĞÅÏ¢ÏÔÊ¾º¯ÊıÍ·ÎÄ¼ş
-bool player_information();
-//³õÊ¼»¯Íæ¼ÒĞÅÏ¢º¯ÊıÍ·ÎÄ¼ş
-void player_init(std::string name,int& go_first);
-//Íæ¼Ò¾­ÑéÖµĞÅÏ¢¸üĞÂº¯ÊıÍ·ÎÄ¼ş
-int player_update(int& EP);
-//¶ÎÎ»¸üĞÂº¯ÊıÍ·ÎÄ¼ş
-void rank_update(std::string rank_name);
-//ÏÔÊ¾ÓÎÏ·¹æÔòº¯ÊıÍ·ÎÄ¼ş
-void show_rules();
-//Í³Ò»¸üĞÂº¯Êı
-void update_all(int update_EP);
+//æ¸¸æˆè®°å½•ä¿å­˜å‡½æ•°å¤´æ–‡ä»¶
+bool record_save(bool& is_win ,int& difficulty, int& attempts, int& max_num, int& chance, int& EP);
+//ç©å®¶ä¿¡æ¯æ˜¾ç¤ºå‡½æ•°å¤´æ–‡ä»¶
+bool player_information(std::stringstream& output);
+//åˆå§‹åŒ–ç©å®¶ä¿¡æ¯å‡½æ•°å¤´æ–‡ä»¶
+void player_init();
+//ç©å®¶ç»éªŒå€¼ä¿¡æ¯æ›´æ–°å‡½æ•°å¤´æ–‡ä»¶
+bool player_update(int& update_EP,int& sum_EP);
+//æ®µä½æ›´æ–°å‡½æ•°å¤´æ–‡ä»¶
+bool rank_update(std::string rank_name);
+//æ˜¾ç¤ºæ¸¸æˆè§„åˆ™å‡½æ•°å¤´æ–‡ä»¶
+void show_rules(std::stringstream& output);
+//ç»Ÿä¸€æ›´æ–°å‡½æ•°
+bool update_all(int update_EP);
 

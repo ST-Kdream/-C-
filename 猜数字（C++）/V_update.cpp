@@ -23,8 +23,11 @@ size_t WriteCallback(void* contents, size_t size, size_t numemb, std::string* s)
 	return length;
 }
 
+std::stringstream ss;
+
 std::string get_remote_version()
 {
+	curl_global_init(CURL_GLOBAL_DEFAULT);
 	CURL* curl = curl_easy_init();
 	std::string respond;
 	if (curl)
@@ -42,9 +45,12 @@ std::string get_remote_version()
 		
 		if (res != CURLE_OK)
 		{
-			std::cerr << "ÍøÂçÁ¬½ÓÊ§°Ü£¬Çë¼ì²éÍøÂçÉèÖÃ£¡" << std::endl;
-			std::cerr << "´íÎóÂë£º" << curl_easy_strerror(res) << std::endl;
+			ss<<"è¯·æ±‚å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œ" << "é”™è¯¯ç ï¼š" << '\n' << curl_easy_strerror(res) << std::endl;
 			respond = "";
+		}
+		else
+		{
+			ss << "ç½‘ç»œè¯·æ±‚æˆåŠŸï¼" << std::endl;
 		}
 	}
 	curl_easy_cleanup(curl);
@@ -53,6 +59,7 @@ std::string get_remote_version()
 	{
 		respond.pop_back();
 	}
+	curl_global_cleanup();
 	return respond;
 }
 
@@ -96,24 +103,24 @@ bool is_update(const std::string& local_version, const std::string& remote_versi
 	return answer;
 }
 
-void version_check()
+void version_check(std::stringstream& output)
 {
-	std::cout << "ÓÎÏ·Æô¶¯£¬ÕýÔÚ¼ì²é¸üÐÂ£¬ÇëÉÔºó......" << std::endl;
 	std::string remote_version = get_remote_version();
+	output << ss.str() << std::endl;
 	if (remote_version.empty())
 	{
-		std::cout << "¼ì²é¸üÐÂÊ§°Ü£¡" << std::endl;
+		output << "æ£€æŸ¥æ›´æ–°å¤±è´¥" << std::endl;
 		return;
 	}
 	if (is_update(Local_Version, remote_version))
-		std::cout << "ÒÑÊÇ×îÐÂ°æ±¾£º" << Local_Version << std::endl;
+		output << " å½“å‰å·²æ˜¯æœ€æ–°ç‰ˆæœ¬ï¼š" << Local_Version << std::endl;
 	else
 	{
-		std::cout << "ÓÐÐÂ°æ±¾·¢²¼£¡" << std::endl;
-		std::cout << "µ±Ç°°æ±¾£º" << Local_Version << '\t' << "×îÐÂ°æ±¾£º" << remote_version << std::endl;
-		std::cout << "ÇëÇ°Íù " << New_Download_URL << " ÏÂÔØÐÂ°æ±¾" << std::endl;
+		output << "å‘çŽ°æ–°ç‰ˆæœ¬ï¼" << std::endl;
+		output << "å½“å‰ç‰ˆæœ¬ï¼š" << Local_Version << '\t' << "æœ€æ–°ç‰ˆæœ¬" << remote_version << std::endl;
+		output << "è¯·åˆ°" << New_Download_URL << "ä¸‹è½½æœ€æ–°ç‰ˆæœ¬" << std::endl;
 	}
-	std::cout << "________________________________________________________________________";
+	output << "________________________________________________________________________";
 
 }
 

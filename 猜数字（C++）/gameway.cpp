@@ -1,58 +1,24 @@
-#include"gameway.h"
+#include "gameway.h"
 
-void gameway_all(int& max_num, int& chance, int& attempts, bool& is_win)
+std::stringstream gameway_judge(int guess,int answer,int chance, int attempts)
 {
-	//Ëæ»úÊıÉú³ÉÆ÷
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<>int_dis(1, max_num);
-
-	//ÓÎÏ·±äÁ¿
-	int answer = int_dis(gen);
-	int guess = 0;
-	attempts = 0;
-
-	//ÓÎÏ·Ö÷Ñ­»·
-	std::cout << "ÇëÊäÈëÒ»¸ö1µ½" << max_num << "Ö®¼äµÄÕûÊı£º" << std::endl;
-
-	while (chance > attempts) 
+	std::stringstream ss;
+	if (guess > answer) 
+			ss << "çŒœå¤§äº†ï¼Œè¿˜æœ‰" << (chance - attempts) << "æ¬¡æœºä¼šï¼Œ" << "è¯·å†è¯•ä¸€æ¬¡ï¼š" << std::endl;
+	else if (guess < answer) 
+			ss << "çŒœå°äº†ï¼Œè¿˜æœ‰" << (chance - attempts) << "æ¬¡æœºä¼šï¼Œ" << "è¯·å†è¯•ä¸€æ¬¡ï¼š" << std::endl;
+	else
 	{
-		get_valid_int(guess, 1, max_num, "ÄãµÄ²Â²âÊÇ£º");
-		attempts++;
-
-		if (guess > answer) 
-			std::cout << "²Â´óÁË£¬»¹ÓĞ" << (chance - attempts) << "´Î»ú»á£¬" << "ÇëÔÙÊÔÒ»´Î£º" << std::endl;
-		else if (guess < answer) 
-			std::cout << "²ÂĞ¡ÁË£¬»¹ÓĞ" << (chance - attempts) << "´Î»ú»á£¬" << "ÇëÔÙÊÔÒ»´Î£º" << std::endl;
-		else 
-		{
-			std::cout << "¹§Ï²Äã£¬²Â¶ÔÁË£¡" << std::endl;
-			std::cout << "ÄãÒ»¹²²ÂÁË" << attempts << "´Î" << std::endl;
-			break;
-		}
+		ss << "æ­å–œä½ ï¼ŒçŒœå¯¹äº†ï¼\n" << "ä½ ä¸€å…±çŒœäº†" << attempts << "æ¬¡" << std::endl;
 	}
-
-	if (guess != answer) 
-	{
-		std::cout << "ºÜÒÅº¶£¬ÄãÃ»ÓĞ²ÂÖĞ£¬ÕıÈ·´ğ°¸Îª£º" << answer << std::endl;
-		is_win = false;
-	}
-	else 
-		is_win = true;
-
+	return ss;
 }
 
-//ÆÕÍ¨Ä£Ê½º¯Êı¶¨Òå
-void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance , int& EP) 
+	
+//æ™®é€šæ¨¡å¼å‡½æ•°å®šä¹‰
+void gameway_common(int& difficulty,int& max_num, int& chance , int& EP) 
 {
-	//ÓÎÏ·½éÉÜºÍÄÑ¶ÈÑ¡Ôñ
-	std::cout << "»¶Ó­À´µ½²ÂÊı×ÖÓÎÏ·£¨ÆÕÍ¨Ä£Ê½£©£¡" << std::endl;
-	std::this_thread::sleep_for(std::chrono::seconds(1));
-	std::cout << "½ÓÏÂÀ´½øĞĞÄÑ¶ÈÑ¡Ôñ\n1Îª\t¼òµ¥\n2Îª\tÆÕÍ¨\n3Îª\tÀ§ÄÑ\n4Îª\tØ¬ÃÎ\n5Îª\tµØÓü\n6Îª\t×Ô¶¨Òå" <<std::endl;
-
-	get_valid_int(difficulty, 1, 6, "ÇëÊäÈëÄÑ¶ÈÑ¡Ôñ(ÊäÈëÕûÊı1µ½6£©: ");
-
-	//ÄÑ¶ÈÉèÖÃ
+	//éš¾åº¦è®¾ç½®
 	class DifficultySetting 
 	{
 	public:
@@ -69,59 +35,29 @@ void gameway_common(bool& is_win, int& difficulty, int& attempts, int& max_num, 
 		}
 	};
 	
-	// ¶¨Òå²¢³õÊ¼»¯ÄÑ¶È²ÎÊı
+	// å®šä¹‰å¹¶åˆå§‹åŒ–éš¾åº¦å‚æ•°
 	std::vector <DifficultySetting> difficulty_settings = 
 	{
-	{100,10, 5, "¼òµ¥"},
-	{100, 7, 10, "ÆÕÍ¨"},
-	{2000, 15, 15, "À§ÄÑ"},
-	{10000, 20, 20, "Ø¬ÃÎ"},
-	{500000, 25, 30, "µØÓü"},
-	{0, 0, 0, "×Ô¶¨Òå"} 
+	{100,10, 5, "ç®€å•"},
+	{100, 7, 10, "æ™®é€š"},
+	{2000, 15, 15, "å›°éš¾"},
+	{10000, 20, 20, "å™©æ¢¦"},
+	{500000, 25, 30, "åœ°ç‹±"},
 	};
 	
-   
-
-	//¸ù¾İÑ¡ÔñÉèÖÃ²ÎÊı
+    //æ ¹æ®é€‰æ‹©è®¾ç½®å‚æ•°
 	DifficultySetting chosen_difficulty = difficulty_settings[difficulty - 1];
 	max_num = chosen_difficulty.max_num;
 	chance = chosen_difficulty.chance;
 	EP = chosen_difficulty.EP;
 
-	
-
-	if (difficulty == 6) 
-	{
-		get_valid_int(max_num, 10, 1000000, "ÇëÊäÈëÄãÏëÒªµÄ×î´óÊı×Ö(10µ½1000000Ö®¼äµÄÕûÊı£©: ");
-		get_valid_int(chance, 1, 100000, "ÇëÊäÈëÄãÏëÒªµÄ²Â²â´ÎÊı(1µ½100000Ö®¼äµÄÕûÊı£©: ");
-		
-	}
-
-	//ÓÎÏ·¿ªÊ¼µ¹¼ÆÊ±
-	std::cout << "ÄãÑ¡ÔñµÄÄÑ¶ÈÎª£º" << chosen_difficulty.name << "£¬´ğ°¸ÔÚ1µ½" << max_num << "Ö®¼ä£¬ÄãÓĞ" << chance << "´Î»ú»á²ÂÖĞ´ğ°¸¡£" << std::endl;
-	std::cout << "Èç¹ûÊ¤Àû£¬Äã½«»ñµÃ" << EP << "¾­Ñé" << std::endl;
-	std::cout << "ÓÎÏ·½«ÔÚ3Ãëºó¿ªÊ¼£¬Çë×öºÃ×¼±¸£¡" << std::endl;
-	int enter_time = 3;
-	while (enter_time > 0) 
-	{
-		std::cout << enter_time << std::endl;
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-		enter_time--;
-	}
-	std::cout << "ÓÎÏ·¿ªÊ¼£¡" << std::endl;
-
-	gameway_all(max_num, chance, attempts, is_win);
 }
 
-//ÌôÕ½Ä£Ê½º¯Êı¶¨Òå
-void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, int& chance, int& EP)
+//æŒ‘æˆ˜æ¨¡å¼å‡½æ•°å®šä¹‰
+void gameway_challenge(int& level,int& max_num, int& chance, int& EP)
 {
-	std::cout << "»¶Ó­À´µ½²ÂÊı×ÖÓÎÏ·£¨ÌôÕ½Ä£Ê½£©£¡" << std::endl;
-	std::this_thread::sleep_for(std::chrono::seconds(1));
-	std::cout << "Äã½«ÓĞ9¸öÄÑ¶ÈµÈ¼¶¿É¹©ÌôÕ½" << std::endl;
-	get_valid_int(level, 1, 9, "½ÓÏÂÀ´ÇëÑ¡ÔñÄãÏëÒªÌôÕ½µÄÄÑ¶ÈµÈ¼¶£º ");
-	
-	//¸ù¾İÑ¡ÔñÉèÖÃ²ÎÊı
+		
+	//æ ¹æ®é€‰æ‹©è®¾ç½®å‚æ•°
 	class LevelSetting
 	{
 	public:
@@ -136,7 +72,7 @@ void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, in
 		}
 	};
 
-	// ¶¨Òå²¢³õÊ¼»¯ÄÑ¶È²ÎÊı
+	// å®šä¹‰å¹¶åˆå§‹åŒ–éš¾åº¦å‚æ•°
 	std::vector <LevelSetting> level_settings = 
 	{
 		{100, 6, 20, 1},
@@ -150,114 +86,77 @@ void gameway_challenge(bool& is_win, int& level, int& attempts, int& max_num, in
 		{10000000, 40, 100, 9}
 	};
 
-	//¸ù¾İÑ¡ÔñÉèÖÃ²ÎÊı
+	//æ ¹æ®é€‰æ‹©è®¾ç½®å‚æ•°
 	max_num = level_settings[level - 1].max_num;
 	chance = level_settings[level - 1].chance;
 	EP = level_settings[level - 1].EP;
 	level = level_settings[level - 1].level_num;
-	std::cout << "ÄãÑ¡ÔñµÄÄÑ¶ÈµÈ¼¶Îª£º" << level << "£¬´ğ°¸ÔÚ1µ½" << max_num << "Ö®¼ä£¬ÄãÓĞ" << chance << "´Î»ú»á²ÂÖĞ´ğ°¸¡£" << std::endl;
-
-	//ÓÎÏ·¿ªÊ¼µ¹¼ÆÊ±
-	std::cout << "ÓÎÏ·½«ÔÚ3Ãëºó¿ªÊ¼£¬Çë×öºÃ×¼±¸£¡" << std::endl;
-	for (int enter_time = 3; enter_time > 0; enter_time--)
-	{
-		std::cout << enter_time << std::endl;
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
-	std::cout << "ÓÎÏ·¿ªÊ¼£¡" << std::endl;
-
-	gameway_all(max_num, chance, attempts, is_win);
+	
 }
 
-//ÎŞ¾¡Ä£Ê½º¯Êı¶¨Òå
+//æ— å°½æ¨¡å¼å‡½æ•°å®šä¹‰
 void gameway_endless(bool& is_win, int& episode, int& attempts, int& max_num, int& chance, int& EP, int& update_EP)
 {
-	std::cout<<"»¶Ó­À´µ½²ÂÊı×ÖÓÎÏ·£¨ÎŞ¾¡Ä£Ê½£©"<<std::endl;
-	std::cout << "ÓÎÏ·¼´½«¿ªÊ¼£¬Çë×öºÃ×¼±¸£¡" << std::endl;
+
 	update_EP = 0;
 	is_win = true;
 	episode = 1;
 	max_num = 100;
 	chance = 10;
 	EP = 5;
-	for (int i = 3; i > 0; i--)
-	{
-		std::cout << i << std::endl;
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
-	while(is_win)
-	{ 
-		std::cout << "µÚ" << episode << "¹Ø¿ªÊ¼£¡" << std::endl;
-		std::cout << "´ğ°¸ÔÚ1µ½" << max_num << "Ö®¼ä£¬ÄãÓĞ" << chance << "´Î»ú»á²ÂÖĞ´ğ°¸¡£" << std::endl;
-		std::cout << "Èç¹ûÊ¤Àû£¬Äã½«»ñµÃ" << EP << "¾­Ñé" << std::endl;
-		gameway_all(max_num, chance, attempts, is_win);
-		if (is_win)
-		{
-			update_EP += EP;
-			std::cout << "¹§Ï²ÄãÍ¨¹ıÁËµÚ" << episode << "¹Ø£¡Äãµ±Ç°×Ü¾­ÑéÖµÎª£º" << update_EP << std::endl;
-			episode++;
-			if (episode <= 6)
-			{
-				max_num += 100;
-				chance += 1;
-			}
-			else if (episode <= 15)
-			{
-				std::cout << "²»´í°¡£¬¼ÌĞø¼ÓÓÍ£¡" << std::endl;
-				max_num += 400;
-				chance += 2;
-				EP = 6;
-			}
-			else if(episode<=30)
-			{
-				std::cout << "ÄãÕæÀ÷º¦£¬¼ÌĞø±£³Ö£¡" << std::endl;
-				max_num += 800;
-				chance += 3;
-				EP = 10;
-			}
-			else if (episode <= 40)
-			{
-				std::cout << "ÉÏÄÑ¶ÈÁË£¬¼ÌĞøÇ°½ø£¡" << std::endl;
-				max_num += 1200;
-				chance += 3;
-				EP = 15;
-			}
-			else if (episode <= 55)
-			{
-				std::cout << "²»¿ÉË¼Òé£¬Äã¾ÓÈ»»¹ÔÚ¼ÌĞø£¡" << std::endl;
-				max_num += 2000;
-				chance += 4;
-				EP += 2;
-			}
-			else if (episode <= 75)
-			{
-				std::cout << "ÄãÊÇÎŞµĞµÄ°É£¡" << std::endl;
-				max_num += 5000;
-				chance += 4;
-				EP += 5;
-			}
-			else if (episode <= 100)
-			{
-				std::cout << "Ê·Ê«¼¶±ğµÄÌôÕ½£¡" << std::endl;
-				max_num += 15000;
-				chance += 5;
-				EP += 10;
-			}
-			else
-			{
-				std::cout << "ÏíÊÜÎŞ¾¡µÄÌôÕ½°É£¡" << std::endl;
-				max_num += 50000;
-				chance += 3;
-				EP += 25;
-			}
-			std::this_thread::sleep_for(std::chrono::seconds(1));
-		}
-		else
-		{
-			std::cout << "ºÜÒÅº¶£¬ÄãÎ´ÄÜÍ¨¹ıµÚ" << episode << "¹Ø£¬ÓÎÏ·½áÊø£¡Äã×îÖÕµÄ×Ü¾­ÑéÖµÎª£º" << update_EP << std::endl;
-		}
-	}
 }
 
 
+// è·å–éš¾åº¦è®¾ç½®çš„æè¿°ä¿¡æ¯
+QString getdiffinfo(int difficulty, int max_num, int chance, int EP)
+{
+	QStringList difficultyNames = { "ç®€å•", "æ™®é€š", "å›°éš¾", "å™©æ¢¦", "åœ°ç‹±", "è‡ªå®šä¹‰" };
 
+	if (difficulty >= 1 && difficulty <= 6) {
+		return QString("éš¾åº¦: %1\næ•°å­—èŒƒå›´: 1-%2\nå°è¯•æ¬¡æ•°: %3\nå¥–åŠ±ç»éªŒ: %4").arg(difficultyNames[difficulty - 1]).arg(max_num).arg(chance).arg(EP);
+	}
+
+	return "æœªçŸ¥éš¾åº¦";
+}
+
+// è·å–ç­‰çº§è®¾ç½®çš„æè¿°ä¿¡æ¯
+QString getlevelinfo(int level, int max_num, int chance, int EP)
+{
+	return QString("ç­‰çº§: %1\næ•°å­—èŒƒå›´: 1-%2\nå°è¯•æ¬¡æ•°: %3\nå¥–åŠ±ç»éªŒ: %4").arg(level).arg(max_num).arg(chance).arg(EP);
+}
+
+QString endlessgammemessage(int episode)
+{
+	if (episode <= 6) 
+	{
+		return "ç»§ç»­å‰è¿›ï¼";
+	}
+	else if (episode <= 15) 
+	{
+		return "ä¸é”™å•Šï¼Œç»§ç»­åŠ æ²¹ï¼";
+	}
+	else if (episode <= 30) 
+	{
+		return "ä½ çœŸå‰å®³ï¼Œç»§ç»­ä¿æŒï¼";
+	}
+	else if (episode <= 40) 
+	{
+		return "ä¸Šéš¾åº¦äº†ï¼Œç»§ç»­å‰è¿›ï¼";
+	}
+	else if (episode <= 55) 
+	{
+		return "ä¸å¯æ€è®®ï¼Œä½ å±…ç„¶è¿˜åœ¨ç»§ç»­ï¼";
+	}
+	else if (episode <= 75) 
+	{
+		return "ä½ æ˜¯æ— æ•Œçš„å§ï¼";
+	}
+	else if (episode <= 100) 
+	{
+		return "å²è¯—çº§åˆ«çš„æŒ‘æˆ˜ï¼";
+	}
+	else 
+	{
+		return "äº«å—æ— å°½çš„æŒ‘æˆ˜å§ï¼";
+	}
+}

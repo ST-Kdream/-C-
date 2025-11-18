@@ -1,167 +1,208 @@
 #include "record.h"
 #include "rank.h"
+#include "Qt_gui.h"
 
-//¼ÇÂ¼±£´æº¯Êı¶¨Òå
-void record_save(bool& is_win, std::string mode, int& difficulty, int& attempts, int& max_num, int& chance,int& EP) {
+//è®°å½•ä¿å­˜å‡½æ•°å®šä¹‰
+bool record_save(bool& is_win, int& difficulty, int& attempts, int& max_num, int& chance,int& EP) {
 	time_t now = time(0);
 	char time_str[26];
 	ctime_s(time_str, sizeof time_str, &now);
+
 	std::ofstream record_file("game_record.txt", std::ios::app);
-	if (record_file.is_open()) {
-		record_file << "ÓÎÏ·Ê±¼ä: " << time_str;
-		record_file << "ÓÎÏ·½á¹û£º" << (is_win ? "Ê¤Àû" : "Ê§°Ü") << "  ";
-		record_file << "»ñµÃ¾­Ñé£º" << (is_win ? EP : 0) << std::endl;
-        record_file << "ÓÎÏ·Ä£Ê½£º" << mode << "   ";
-		record_file << "ÄÑ¶ÈµÈ¼¶: " << difficulty << std::endl;
-		record_file << "×î´óÊı×Ö: " << max_num << std::endl;
-		record_file << "²Â²â´ÎÊı: " << attempts << "/" << chance << std::endl;
+	if (record_file.is_open()) 
+    {
+		record_file << "æ¸¸æˆæ—¶é—´: " << time_str;
+		record_file << "æ¸¸æˆç»“æœï¼š" << (is_win ? "èƒœåˆ©" : "å¤±è´¥") << "  ";
+		record_file << "è·å¾—ç»éªŒï¼š" << (is_win ? EP : 0) << std::endl;
+		record_file << "éš¾åº¦ç­‰çº§: " << difficulty << std::endl;
+		record_file << "æœ€å¤§æ•°å­—: " << max_num << std::endl;
+		record_file << "çŒœæµ‹æ¬¡æ•°: " << attempts << "/" << chance << std::endl;
 		record_file << "----------------------------------------" << std::endl;
-		record_file.close();
-		std::cout << "ÓÎÏ·¼ÇÂ¼ÒÑ±£´æµ½'game_record.txt'" << std::endl;
+        record_file.close();
+        return true;
 	}
-	else {
-		std::cout << "ÎŞ·¨´ò¿ª¼ÇÂ¼ÎÄ¼ş£¬ÓÎÏ·¼ÇÂ¼Î´±£´æ¡£" << std::endl;
+	else 
+    {
+        return false;
 	}
 }
 
-//Íæ¼ÒĞÅÏ¢ÏÔÊ¾º¯Êı¶¨Òå
-bool player_information() {
+//ç©å®¶ä¿¡æ¯æ˜¾ç¤ºå‡½æ•°å®šä¹‰
+bool player_information(std::stringstream& output) 
+{
    	std::ifstream player_file("player_information.txt");
-	if (player_file.is_open()) {
+	if (player_file.is_open()) 
+    {
 		std::string player_line;
-		std::cout << "Íæ¼ÒĞÅÏ¢¼ÇÂ¼£º" << std::endl;
-		while (getline(player_file, player_line)) {
-			std::cout << player_line << std::endl;
+		output << "ç©å®¶ä¿¡æ¯è®°å½•ï¼š" << std::endl;
+		while (getline(player_file, player_line)) 
+        {
+			output << player_line << std::endl;
 		}
 		player_file.close();
 		return true;
 	}
-	else {
-		std::cout << "ÎŞ·¨´ò¿ª¼ÇÂ¼ÎÄ¼ş£¬ÎŞ·¨ÏÔÊ¾Íæ¼ÒĞÅÏ¢¡£" << std::endl;
+	else 
+    {
+		output << "æ— æ³•æ‰“å¼€è®°å½•æ–‡ä»¶ï¼Œæ— æ³•æ˜¾ç¤ºç©å®¶ä¿¡æ¯ã€‚" << std::endl;
 		return false;
 	}
 }
 
-//³õÊ¼»¯Íæ¼ÒĞÅÏ¢º¯Êı¶¨Òå
-void player_init(std::string name,int& go_first) {
-	std::cin >> name;
-	std::ofstream player_init("player_information.txt");
-	if (player_init.is_open()) {
-		player_init << name << std::endl;
-		player_init << "×Ü¾­ÑéÖµ:" << 0 << std::endl;
-        player_init << "¶ÎÎ»£ºÃÔÎíÌ½Ë÷Õß" << std::endl;
-		player_init.close();
-	}
-	else {
-		std::cout << "ÎŞ·¨´´½¨Íæ¼ÒĞÅÏ¢ÎÄ¼ş£¬Íæ¼ÒĞÅÏ¢Î´±£´æ¡£" << std::endl;
-	}
-	std::cout << "Íæ¼ÒĞÅÏ¢ÒÑ±£´æ£¬»¶Ó­Äã£¬" << name << "£¡" << std::endl;
-	go_first = 1;
-	
+//åˆå§‹åŒ–ç©å®¶ä¿¡æ¯å‡½æ•°å®šä¹‰
+void player_init() 
+{
+    QString name;
+    std::string name_str;
+    QDialog player(nullptr);
+    player.setWindowTitle("ç©å®¶æ³¨å†Œ");
+    player.resize(300, 200);
+    QVBoxLayout* mainlay = new QVBoxLayout(&player);
+
+    QLineEdit* nameinput = new QLineEdit(&player);
+    nameinput->setPlaceholderText("è¯·è¾“å…¥æ˜µç§°ï¼š");
+
+    QDialogButtonBox* btn = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel ,&player);
+    mainlay->addWidget(nameinput);
+    mainlay->addWidget(btn);
+
+    QObject::connect(btn, &QDialogButtonBox::accepted, &player, &QDialog::accept);
+    QObject::connect(btn, &QDialogButtonBox::rejected, &player, &QDialog::reject);
+
+    if (player.exec() == QDialog::Accepted)
+    {
+        name = nameinput->text().trimmed();
+        name_str = name.toStdString();
+    }
+    
+    if (!name_str.empty())
+    {
+        std::ofstream player_init("player_information.txt");
+        if (player_init.is_open())
+        {
+            player_init << name_str << std::endl;
+            player_init << "æ€»ç»éªŒå€¼:" << 0 << std::endl;
+            player_init << "æ®µä½ï¼šè¿·é›¾æ¢ç´¢è€…" << std::endl;
+            player_init.close();
+            QMessageBox::information(nullptr, "åˆå§‹åŒ–æˆåŠŸ", QString("æ¬¢è¿ä½ ï¼Œ%1").arg(name));
+        }
+        else
+        {
+            QMessageBox::warning(nullptr, "åˆå§‹åŒ–å¤±è´¥", "å‡ºç°ä½ç½®é—®é¢˜ï¼Œè®¾ç½®å¤±è´¥");
+        }
+    }
+    else
+    {
+        QMessageBox::warning(nullptr, "é”™è¯¯", "æ— æ³•è·å–æœ‰æ•ˆä¿¡æ¯");
+    }
 }
 
-//Íæ¼Ò¾­ÑéÖµĞÅÏ¢¸üĞÂº¯Êı¶¨Òå
-int player_update(int& EP) 
+//ç©å®¶ç»éªŒå€¼ä¿¡æ¯æ›´æ–°å‡½æ•°å®šä¹‰
+bool player_update(int& update_EP,int& sum_EP) 
 {
-    int sum_EP;  
     std::string EP_line;  
     std::string first_line;  
     std::string rank_line;
-    // ÓÃbinaryÄ£Ê½´ò¿ª£¬±ÜÃâ»»ĞĞ·û×ª»»µ¼ÖÂµÄÂÒÂë
+    // ç”¨binaryæ¨¡å¼æ‰“å¼€ï¼Œé¿å…æ¢è¡Œç¬¦è½¬æ¢å¯¼è‡´çš„ä¹±ç 
     std::fstream player_file("player_information.txt", std::ios::in | std::ios::out | std::ios::binary);  
 
-    if (player_file.is_open()) {
-        // ¶ÁÈ¡µÚÒ»ĞĞ£¨Íæ¼ÒÃû£©ºÍµÚ¶şĞĞ£¨¾­ÑéÖµĞĞ£©
+    if (player_file.is_open()) 
+    {
+        // è¯»å–ç¬¬ä¸€è¡Œï¼ˆç©å®¶åï¼‰å’Œç¬¬äºŒè¡Œï¼ˆç»éªŒå€¼è¡Œï¼‰
         getline(player_file, first_line);
         getline(player_file, EP_line);
         getline(player_file, rank_line);
 
-        // ²éÕÒÃ°ºÅ£¨¼æÈİÖĞÎÄ¡°£º¡±ºÍÓ¢ÎÄ¡°:¡±£©
-        size_t pos = EP_line.find("£º");
-        if (pos == std::string::npos) {
-            pos = EP_line.find(":");  // ²¹³äÓ¢ÎÄÃ°ºÅ¼æÈİ
+        // æŸ¥æ‰¾å†’å·ï¼ˆå…¼å®¹ä¸­æ–‡â€œï¼šâ€å’Œè‹±æ–‡â€œ:â€ï¼‰
+        size_t pos = EP_line.find("ï¼š");
+        if (pos == std::string::npos)
+        {
+            pos = EP_line.find(":");  // è¡¥å……è‹±æ–‡å†’å·å…¼å®¹
         }
 
         if (pos != std::string::npos) 
         {
-            // ½ØÈ¡Ã°ºÅºóÄÚÈİ£¬²¢¹ıÂË³ö´¿°ë½ÇÊı×Ö£¨½â¾ö¸ñÊ½´íÎóºËĞÄ£©
-            std::string num_str = EP_line.substr(pos + 1);  // Ìø¹ıÃ°ºÅ
-            std::string pure_num;  // ÁÙÊ±±äÁ¿£¬ÓÃÓÚ´æ´¢¹ıÂËºóµÄÊı×Ö
-            // ÓÃASCII·¶Î§ÅĞ¶Ï°ë½ÇÊı×Ö£¨Ìæ´úisdigit£¬±ÜÃâÎóÅĞ£©
+            // æˆªå–å†’å·åå†…å®¹ï¼Œå¹¶è¿‡æ»¤å‡ºçº¯åŠè§’æ•°å­—ï¼ˆè§£å†³æ ¼å¼é”™è¯¯æ ¸å¿ƒï¼‰
+            std::string num_str = EP_line.substr(pos + 1);  // è·³è¿‡å†’å·
+            std::string pure_num;  // ä¸´æ—¶å˜é‡ï¼Œç”¨äºå­˜å‚¨è¿‡æ»¤åçš„æ•°å­—
+            // ç”¨ASCIIèŒƒå›´åˆ¤æ–­åŠè§’æ•°å­—ï¼ˆæ›¿ä»£isdigitï¼Œé¿å…è¯¯åˆ¤ï¼‰
             for (char c : num_str) 
             {
-                if (c >= '0' && c <= '9')    // Ö»±£Áô0-9µÄ°ë½ÇÊı×Ö
+                if (c >= '0' && c <= '9')    // åªä¿ç•™0-9çš„åŠè§’æ•°å­—
                 {  
                     pure_num += c;
                 }
             }
 
-            // ¼ì²éÊÇ·ñÌáÈ¡µ½ÓĞĞ§Êı×Ö
+            // æ£€æŸ¥æ˜¯å¦æå–åˆ°æœ‰æ•ˆæ•°å­—
             try
             {
                 if (pure_num.empty())
                 {
                     player_file.close();
-                    throw std::runtime_error("¸üĞÂÍæ¼ÒĞÅÏ¢´íÎó");
+                    throw std::runtime_error("æ›´æ–°ç©å®¶ä¿¡æ¯é”™è¯¯");
                 }
             }
             catch (const std::exception& e)
             {
-                std::cout << "Íæ¼ÒĞÅÏ¢¸ñÊ½´íÎó£¬Î´ÕÒµ½ÓĞĞ§Êı×Ö£¨½öÖ§³Ö°ë½Ç0-9£©¡£" << std::endl;
                 player_file.close();
-                exit(12);
+                return false;
             }
             
 
-            // ×ª»»Êı×Ö²¢¼ÆËã×Ü¾­ÑéÖµ
-            try {
-                sum_EP = stoi(pure_num) + EP;  
+            // è½¬æ¢æ•°å­—å¹¶è®¡ç®—æ€»ç»éªŒå€¼
+            try 
+            {
+                sum_EP = stoi(pure_num) + update_EP;  
             }
-            catch (const std::invalid_argument&) {
-                std::cout << "Íæ¼ÒĞÅÏ¢¸ñÊ½´íÎó£¬ÎŞ·¨¶ÁÈ¡¾­ÑéÖµ¡£" << std::endl;
+            catch (const std::invalid_argument&) 
+            {
+                return false;
                 player_file.close();
-                exit(13);
             }
-            catch (const std::out_of_range&) {
-                std::cout << "Íæ¼ÒĞÅÏ¢ÖĞµÄ¾­ÑéÖµ³¬³ö·¶Î§£¬ÎŞ·¨¶ÁÈ¡¾­ÑéÖµ¡£" << std::endl;
+            catch (const std::out_of_range&)
+            {
+                return false;
                 player_file.close();;
-                exit(14);
             }
 
-            // ¹Ø±ÕÔ­ÎÄ¼ş£¬ÓÃtruncateÄ£Ê½ÖØĞÂ´ò¿ªĞ´Èë£¨½â¾ötruncate³ÉÔ±´íÎó£©
+            // å…³é—­åŸæ–‡ä»¶ï¼Œç”¨truncateæ¨¡å¼é‡æ–°æ‰“å¼€å†™å…¥ï¼ˆè§£å†³truncateæˆå‘˜é”™è¯¯ï¼‰
             player_file.close();
             std::ofstream out_file("player_information.txt", std::ios::out | std::ios::trunc | std::ios::binary);
-            if (out_file.is_open()) {
-                // Ğ´»ØÍæ¼ÒÃûºÍĞÂ¾­ÑéÖµĞĞ£¨ÓÃ\r\n±ÜÃâ»»ĞĞ·ûÂÒÂë£©
+            if (out_file.is_open()) 
+            {
+                // å†™å›ç©å®¶åå’Œæ–°ç»éªŒå€¼è¡Œï¼ˆç”¨\r\né¿å…æ¢è¡Œç¬¦ä¹±ç ï¼‰
                 out_file << first_line << "\r\n";
-                out_file << "×Ü¾­ÑéÖµ£º" << sum_EP << "\r\n";
+                out_file << "æ€»ç»éªŒå€¼ï¼š" << sum_EP << "\r\n";
                 out_file << rank_line << "\r\n";
                 out_file.close();
-                std::cout << "¾­ÑéÖµ¸üĞÂ³É¹¦£¡µ±Ç°×Ü¾­ÑéÖµ£º" << sum_EP << std::endl;
-                return sum_EP;
+                return true;
             }
-            else {
-                std::cout << "ÎŞ·¨Ğ´ÈëÎÄ¼ş£¬¿ÉÄÜ±»Õ¼ÓÃ¡£" << std::endl;
+            else 
+            {
+                return false;
             }
 
         }
-        else {
-            // Î´ÕÒµ½Ã°ºÅµÄ´íÎó´¦Àí
-            std::cout << "Íæ¼ÒĞÅÏ¢¸ñÊ½´íÎó£¬Î´ÕÒµ½Ã°ºÅ£¨£º»ò:£©¡£" << std::endl;
+        else 
+        {
+            // æœªæ‰¾åˆ°å†’å·çš„é”™è¯¯å¤„ç†
             player_file.close();
+            return false;
         }
 
     }
-    else {
-        // ÎÄ¼ş´ò¿ªÊ§°ÜµÄ´íÎó´¦Àí
-        std::cout << "ÎŞ·¨´ò¿ªÍæ¼ÒĞÅÏ¢ÎÄ¼ş£¬Çë¼ì²éÂ·¾¶»òÎÄ¼şÊÇ·ñ±»Õ¼ÓÃ¡£" << std::endl;
+    else 
+    {
+        // æ–‡ä»¶æ‰“å¼€å¤±è´¥çš„é”™è¯¯å¤„ç†
+        return false;
     }
 }
 
-//¶ÎÎ»¸üĞÂº¯ÊıÍ·ÎÄ¼ş
-void rank_update(std::string rank_name)
+//æ®µä½æ›´æ–°å‡½æ•°å¤´æ–‡ä»¶
+bool rank_update(std::string rank_name)
 {
-    std::string rank_line = "Íæ¼Ò¶ÎÎ»Îª£º" + rank_name;
+    std::string rank_line = "ç©å®¶æ®µä½ä¸ºï¼š" + rank_name;
     std::vector <std::string> fline;
     std::ifstream in_file("player_information.txt");
     if (in_file.is_open())
@@ -174,14 +215,14 @@ void rank_update(std::string rank_name)
         in_file.close();
     }
     else
-        std::cout << "¸üĞÂ¶ÎÎ»Ê±ÎÄ¼ş´ò¿ªÊ§°Ü£¡" << std::endl;
+        return false;
 
     if (fline.size() == 3)
     {
         fline[2] = rank_line;
     }
     else
-        std::cout << "Íæ¼ÒĞÅÏ¢¸ñÊ½´íÎó£¡" << std::endl;
+        return false;
 
     std::ofstream out_file("player_information.txt");
     if (out_file.is_open())
@@ -191,35 +232,54 @@ void rank_update(std::string rank_name)
             out_file << out_line << "\r\n";
         }
         out_file.close();
-        std::cout << "¶ÎÎ»¸üĞÂ³É¹¦£¬ÄãÏÖÔÚµÄ¶ÎÎ»ÊÇ£º" << rank_name << std::endl;
+        return true;
     }
     else
     {
-        std::cout << "Íæ¼ÒĞÅÏ¢ÎÄ¼şÎŞ·¨´ò¿ª" << std::endl;
+        std::cout << "ç©å®¶ä¿¡æ¯æ–‡ä»¶æ— æ³•æ‰“å¼€" << std::endl;
+        return false;
     }
 }
 
-//ÏÔÊ¾ÓÎÏ·¹æÔòº¯Êı¶¨Òå
-void show_rules() {
+//æ˜¾ç¤ºæ¸¸æˆè§„åˆ™å‡½æ•°å®šä¹‰
+void show_rules(std::stringstream& output) 
+{
 	std::ifstream rule_file("game_rules.txt");
-	if (rule_file.is_open()) {
+	if (rule_file.is_open()) 
+    {
 		std::string rule_line;
 		while (getline(rule_file, rule_line)) 
         {
-			std::cout << rule_line << std::endl;
+			output << rule_line << std::endl;
 		}
 		rule_file.close();
     }
 	else
     {
-		std::cout << "ÎŞ·¨´ò¿ª¹æÔòÎÄ¼ş£¬ÎŞ·¨ÏÔÊ¾ÓÎÏ·¹æÔò¡£" << std::endl;
+		output << "æ— æ³•æ‰“å¼€è§„åˆ™æ–‡ä»¶ï¼Œæ— æ³•æ˜¾ç¤ºæ¸¸æˆè§„åˆ™ã€‚" << std::endl;
 	}
 }
 
-//Í³Ò»¸üĞÂº¯Êı¶¨Òå
-void update_all(int update_EP)
+//ç»Ÿä¸€æ›´æ–°å‡½æ•°å®šä¹‰
+bool update_all(int update_EP)
 {
-    int sum_EP = player_update(update_EP);  //µ÷ÓÃÍæ¼Ò¾­ÑéÖµĞÅÏ¢¸üĞÂº¯Êı
+    if (!record_save(is_win, difficulty, attempts, max_num, chance, EP))
+    {
+        QMessageBox::warning(nullptr, "é”™è¯¯", "æ¸¸æˆä¿¡æ¯æ›´æ–°å¤±è´¥");
+        return false;
+    }
+    if (!player_update(update_EP, sum_EP))
+    {
+        QMessageBox::warning(nullptr, "é”™è¯¯", "ç©å®¶ç»éªŒå€¼æ›´æ–°å¤±è´¥");
+        return false;
+    }
     std::string rank_name = Rank::update_rank(sum_EP, rankings);
-    rank_update(rank_name);
+    if (!rank_update(rank_name))
+    {
+        QMessageBox::warning(nullptr, "é”™è¯¯", "ç©å®¶æ®µä½æ›´æ–°å¤±è´¥");
+        return false;
+    }
+    QString newinfo = QString("æ€»ç»éªŒï¼š%1ï¼Œæ®µä½ï¼š%2").arg(sum_EP).arg(rank_name);
+    QMessageBox::information(nullptr, "ä¿¡æ¯æ›´æ–°", newinfo);
+    return true;
 }

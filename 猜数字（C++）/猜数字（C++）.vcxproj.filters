@@ -18,9 +18,6 @@
     <ClCompile Include="猜数字（C++）.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="number_check.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="gameway.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -33,6 +30,9 @@
     <ClCompile Include="V_update.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Qt_gui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore">
@@ -40,9 +40,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="number_check.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="gameway.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -55,5 +52,10 @@
     <ClInclude Include="V_update.h">
       <Filter>头文件</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Qt_gui.h">
+      <Filter>头文件</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>
